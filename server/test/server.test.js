@@ -150,4 +150,15 @@ describe('GET /todos', () => {
 			.expect(200)
 			.end(done);
 	});
+	it('should return 404 if no todos are found', done => {
+		const payload = { email: users[1].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+		request(app)
+			.get('/api/todos')
+			.set('Authorization', `Bearer ${token}`)
+			.expect(404)
+			.end(done);
+	});
 });

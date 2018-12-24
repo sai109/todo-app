@@ -11,7 +11,7 @@ router.get(
 	(req, res) => {
 		Todo.find({ _creator: req.user._id })
 			.then(users => {
-				if (users) {
+				if (users.length > 0) {
 					return res.status(200).json(users);
 				} else {
 					res

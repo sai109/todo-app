@@ -33,7 +33,7 @@ const todos = [
 		_id: todoTwoID,
 		body: 'Test 101',
 		completed: false,
-		_creator: userTwoID
+		_creator: userOneID
 	}
 ];
 
