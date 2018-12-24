@@ -5,8 +5,8 @@
 	"license": "MIT",
 	"scripts": {
 		"dev-server": "cross-env NODE_ENV=development nodemon server/server.js",
-		"test-server": "cross-env NODE_ENV=test nodemon server/server.js --exit",
-		"test": "cross-env NODE_ENV=test mocha server/**/*.test.js"
+		"test-server": "cross-env NODE_ENV=test nodemon server/server.js",
+		"test": "cross-env NODE_ENV=test mocha --exit server/**/*.test.js"
 	},
 	"dependencies": {
 		"@babel/core": "^7.2.2",
