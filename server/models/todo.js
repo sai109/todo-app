@@ -3,10 +3,13 @@ const Schema = mongoose.Schema;
 
 const todoSchema = new Schema({
 	task: String,
-	completed: Boolean,
-	user: {
+	completed: {
+		type: Boolean,
+		default: false
+	},
+	_creator: {
 		type: Schema.Types.ObjectId,
-		ref: 'user'
+		required: true
 	}
 });
 

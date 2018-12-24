@@ -2,9 +2,20 @@ const expect = require('expect');
 const { app } = require('../server');
 const request = require('supertest');
 const { User } = require('../models/user');
-const { users, populateUsers } = require('./seeds/seeds');
+const {
+	users,
+	populateUsers,
+	populateTodos,
+	authUserOne
+} = require('./seeds/seeds');
+const { Todo } = require('../models/todo');
 
 beforeEach(populateUsers);
+beforeEach(populateTodos);
+
+afterEach(done => {
+	Todo.remove({}).then(() => done());
+});
 
 afterEach(done => {
 	User.remove({}).then(() => done());
@@ -120,6 +131,23 @@ describe('GET /login', () => {
 			.post('/api/register')
 			.send({ email })
 			.expect(400)
+			.end(done);
+	});
+});
+
+describe('GET /todos', () => {
+	it('should return 401 if user not logged in', done => {
+		request(app)
+			.get('/api/tods')
+			.expect(404)
+			.end(done);
+	});
+
+	it('should return todos if user logged in', done => {
+		request(app)
+			.get('/api/todos')
+			.set('Authorisation', authUserOne)
+			.expect(200)
 			.end(done);
 	});
 });

@@ -1,9 +1,15 @@
 const { ObjectID } = require('mongodb');
 
 const { User } = require('../../models/user');
+const { Todo } = require('../../models/todo');
 
 const userOneID = new ObjectID();
 const userTwoID = new ObjectID();
+
+const payload = { email: 'user1@example.com', password: '123456' };
+const authUserOne = jwt
+	.sign(payload, process.env.jwt_key, { expiresIn: 3600 })
+	.toString();
 
 const users = [
 	{
@@ -18,10 +24,34 @@ const users = [
 	}
 ];
 
+const todoOneID = new ObjectID();
+const todoTwoID = new ObjectID();
+
+const todos = [
+	{
+		_id: todoOneID,
+		body: 'Test 101',
+		completed: false,
+		_creator: userOneID
+	},
+	{
+		_id: todoTwoID,
+		body: 'Test 101',
+		completed: false,
+		_creator: userTwoID
+	}
+];
+
 const populateUsers = done => {
 	User.remove({})
 		.then(() => User.insertMany(users))
 		.then(() => done());
 };
 
-module.exports = { users, populateUsers };
+const populateTodos = done => {
+	Todo.remove({})
+		.then(() => Todo.insertMany(todos))
+		.then(() => done());
+};
+
+module.exports = { users, populateUsers, todos, populateTodos, authUserOne };

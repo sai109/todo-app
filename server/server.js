@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const routes = require('./routes/routes');
+const user_routes = require('./routes/user');
 const passport = require('passport');
 const morgan = require('morgan');
 const logger = require('../logger/logger');
@@ -19,7 +19,7 @@ app.use(morgan('combined', { stream: logger.stream }));
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
-app.use('/api', routes);
+app.use('/api', user_routes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
