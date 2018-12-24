@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const user_routes = require('./routes/user');
+const todo_routes = require('./routes/todo');
 const passport = require('passport');
 const morgan = require('morgan');
 const logger = require('../logger/logger');
@@ -20,6 +21,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 app.use('/api', user_routes);
+app.use('/api', todo_routes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

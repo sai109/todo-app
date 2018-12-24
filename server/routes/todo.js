@@ -9,16 +9,18 @@ router.get(
 	'/todos',
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
-		Todo.find({ _creator: req.user._id }).then(users => {
-			if (user) {
-				return res.status(200).json(users);
-			} else {
-				res
-					.status(404)
-					// eslint-disable-next-line quotes
-					.json({ error: "Your user doesn't seem to have any todos" });
-			}
-		});
+		Todo.find({ _creator: req.user._id })
+			.then(users => {
+				if (users) {
+					return res.status(200).json(users);
+				} else {
+					res
+						.status(404)
+						// eslint-disable-next-line quotes
+						.json({ error: "Your user doesn't seem to have any todos" });
+				}
+			})
+			.catch(err => console.log(err));
 	}
 );
 

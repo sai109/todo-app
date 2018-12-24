@@ -73,7 +73,7 @@ router.get('/login', (req, res) => {
 					.then(isMatch => {
 						if (isMatch) {
 							// generate token
-							const payload = { email: userEmail, password: userPassword };
+							const payload = { email: userEmail };
 							jwt.sign(
 								payload,
 								process.env.jwt_key,

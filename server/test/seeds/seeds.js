@@ -6,11 +6,6 @@ const { Todo } = require('../../models/todo');
 const userOneID = new ObjectID();
 const userTwoID = new ObjectID();
 
-const payload = { email: 'user1@example.com', password: '123456' };
-const authUserOne = jwt
-	.sign(payload, process.env.jwt_key, { expiresIn: 3600 })
-	.toString();
-
 const users = [
 	{
 		_id: userOneID,
@@ -54,4 +49,4 @@ const populateTodos = done => {
 		.then(() => done());
 };
 
-module.exports = { users, populateUsers, todos, populateTodos, authUserOne };
+module.exports = { users, populateUsers, todos, populateTodos, userOneID };

@@ -2,13 +2,9 @@ const expect = require('expect');
 const { app } = require('../server');
 const request = require('supertest');
 const { User } = require('../models/user');
-const {
-	users,
-	populateUsers,
-	populateTodos,
-	authUserOne
-} = require('./seeds/seeds');
+const { users, populateUsers, populateTodos } = require('./seeds/seeds');
 const { Todo } = require('../models/todo');
+const jwt = require('jsonwebtoken');
 
 beforeEach(populateUsers);
 beforeEach(populateTodos);
@@ -138,15 +134,19 @@ describe('GET /login', () => {
 describe('GET /todos', () => {
 	it('should return 401 if user not logged in', done => {
 		request(app)
-			.get('/api/tods')
-			.expect(404)
+			.get('/api/todos')
+			.expect(401)
 			.end(done);
 	});
 
 	it('should return todos if user logged in', done => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
 		request(app)
 			.get('/api/todos')
-			.set('Authorisation', authUserOne)
+			.set('Authorization', `Bearer ${token}`)
 			.expect(200)
 			.end(done);
 	});
