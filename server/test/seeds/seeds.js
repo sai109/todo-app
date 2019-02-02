@@ -21,6 +21,7 @@ const users = [
 
 const todoOneID = new ObjectID();
 const todoTwoID = new ObjectID();
+const todoThreeID = new ObjectID();
 
 const todos = [
 	{
@@ -31,7 +32,13 @@ const todos = [
 	},
 	{
 		_id: todoTwoID,
-		body: 'Test 101',
+		body: 'Test 102',
+		completed: false,
+		_creator: userOneID
+	},
+	{
+		_id: todoThreeID,
+		body: 'Test 103',
 		completed: false,
 		_creator: userOneID
 	}
@@ -49,4 +56,11 @@ const populateTodos = done => {
 		.then(() => done());
 };
 
-module.exports = { users, populateUsers, todos, populateTodos, userOneID };
+module.exports = {
+	users,
+	populateUsers,
+	todos,
+	populateTodos,
+	userOneID,
+	todoOneID
+};

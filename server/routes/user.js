@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.status(200));
 
-// POST /register - registers user up to servie
+// POST /register - registers user up to service
 router.post('/register', (req, res) => {
 	if (!req.body.email) {
 		return res.status(400).send({ email: 'Please provide an email' });
