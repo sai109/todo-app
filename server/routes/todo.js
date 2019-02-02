@@ -22,7 +22,7 @@ router.get(
 	}
 );
 
-// GET /todo/:id
+// GET /todo/:id - Gets an individual todo
 router.get(
 	'/todo/:id',
 	passport.authenticate('jwt', { session: false }),
@@ -44,6 +44,40 @@ router.get(
 				error: 'Please a valid id for the todo you would like to find'
 			});
 		}
+	}
+);
+
+// PATCH /todo/:id - Edits an individual todo
+router.patch(
+	'/todo/:id',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		const id = req.params.id;
+		const updates = {};
+		const { body, completed } = req.body;
+
+		if (body) {
+			updates.body = body;
+		}
+		if (completed) {
+			updates.completed = completed;
+		}
+
+		if (!ObjectID.isValid(id)) {
+			return res.status(400).send({ error: 'Please submit a valid todo ID' });
+		}
+
+		Todo.findOneAndUpdate(
+			{ _id: id, _creator: req.user._id },
+			{ $set: updates },
+			{ new: true }
+		).then(todo => {
+			if (todo) {
+				res.status(200).send({ todo });
+			} else {
+				res.status(404).send({ error: 'No todo with that ID' });
+			}
+		});
 	}
 );
 
