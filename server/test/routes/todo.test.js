@@ -223,3 +223,77 @@ describe('PATCH /todo/:id', () => {
 			.end(done);
 	});
 });
+
+describe('DELETE /todo/:id', () => {
+	it('should return 401 if user not logged on', done => {
+		request(app)
+			.delete('/api/todo/123abc')
+			.expect(401)
+			.end(done);
+	});
+
+	it('should return 400 if user ID is invalid', done => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+		request(app)
+			.delete('/api/todo/123abc')
+			.set('authorization', `Bearer ${token}`)
+			.expect(400)
+			.end(done);
+	});
+
+	it('should not raise 404 if todo not found', done => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+		const id = new ObjectID().toHexString();
+
+		request(app)
+			.delete(`/api/todo/${id}`)
+			.set('authorization', `Bearer ${token}`)
+			.expect(404)
+			.end(done);
+	});
+
+	it('should not be able to delete another users todo', done => {
+		const payload = { email: users[1].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+		const id = todoOneID.toHexString();
+
+		request(app)
+			.delete(`/api/todo/${id}`)
+			.set('authorization', `Bearer ${token}`)
+			.expect(404)
+			.end(done);
+	});
+
+	it('should delete a todo', done => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+		const id = todoOneID.toHexString();
+
+		request(app)
+			.delete(`/api/todo/${id}`)
+			.set('authorization', `Bearer ${token}`)
+			.expect(200)
+			.end(err => {
+				if (err) {
+					return done(err);
+				}
+
+				Todo.findById(id)
+					.then(todo => {
+						expect(todo).toBeFalsy();
+						done();
+					})
+					.catch(err => done(err));
+			});
+	});
+});

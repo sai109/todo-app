@@ -75,10 +75,28 @@ router.patch(
 			if (todo) {
 				res.status(200).send({ todo });
 			} else {
-				res.status(404).send({ error: 'No todo with that ID' });
+				res.status(404).send({ error: 'Todo not found' });
 			}
 		});
 	}
 );
 
+// DELETE /todo/:id - Should delete a todo
+router.delete(
+	'/todo/:id',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		const id = req.params.id;
+		if (!ObjectID.isValid(id)) {
+			return res.status(400).send({ error: 'Please submit a valid ID' });
+		}
+		Todo.findOneAndRemove({ _id: id, _creator: req.user._id }).then(todo => {
+			if (!todo) {
+				return res.status(404).send({ error: 'Todo not found' });
+			} else {
+				res.status(200).send({ todo });
+			}
+		});
+	}
+);
 module.exports = router;
