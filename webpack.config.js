@@ -1,22 +1,44 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-	entry: './src/app.js',
-	output: {
-		path: path.resolve(__dirname, './public/dist'),
-		filename: 'bundle.js'
-	},
-	module: {
-		rules: [
-			{
-				test: /\.jsx*/,
-				exclude: /node_modules/,
-				loader: 'babel-loader'
-			}
-		]
-	},
-	devServer: {
-		contentBase: path.join(__dirname, 'public'),
-		port: 3000
-	}
+module.exports = env => {
+	const isProduction = env === 'production';
+	const devMode = env !== 'production';
+
+	return {
+		entry: './src/app.js',
+		output: {
+			path: path.resolve(__dirname, './public'),
+			filename: './dist/bundle.js'
+		},
+		plugins: [
+			new MiniCssExtractPlugin({
+				filename: './style/style.css'
+			})
+		],
+		module: {
+			rules: [
+				{
+					test: /\.jsx*/,
+					exclude: /node_modules/,
+					loader: 'babel-loader'
+				},
+				{
+					test: /\.(sc|c)ss/,
+					use: [
+						devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+						'css-loader',
+						'sass-loader'
+					]
+				}
+			]
+		},
+		devtool: isProduction ? 'sourcemap' : 'inline-source-map',
+		devServer: {
+			contentBase: path.join(__dirname, 'public'),
+			port: 3000,
+			historyApiFallback: true,
+			publicPath: '/dist/'
+		}
+	};
 };

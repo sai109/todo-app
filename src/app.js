@@ -1,14 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-class App extends Component {
-	render() {
-		return (
-			<div>
-				<h1>Hello</h1>
-			</div>
-		);
-	}
-}
+import AppRouter from './router/AppRouter';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<AppRouter />, document.getElementById('app'));
