@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
+const _ = require('lodash');
 const { User } = require('../models/user');
 
 const router = express.Router();
@@ -10,19 +11,28 @@ router.get('/', (req, res) => res.status(200));
 
 // POST /register - registers user up to service
 router.post('/register', (req, res) => {
-	if (!req.body.email) {
-		return res.status(400).send({ email: 'Please provide an email' });
-	}
+	req.body.email = req.body.email ? req.body.email : '';
+	req.body.password = req.body.password ? req.body.password : '';
+
+	let errors = {};
 	if (!validator.isEmail(req.body.email)) {
-		return res.status(400).send({ email: 'Email invalid' });
+		errors.email = 'Email invalid';
 	}
-	if (!req.body.password) {
-		return res.status(400).send({ password: 'Please provide an password' });
-	}
+
 	if (req.body.password.length < 6) {
-		return res
-			.status(400)
-			.send({ password: 'Password must be at least 6 letters' });
+		errors.password = 'Password must be at least 6 letters';
+	}
+
+	if (!req.body.password) {
+		errors.password = 'Please provide an password';
+	}
+
+	if (!req.body.email) {
+		errors.email = 'Please provide an email';
+	}
+
+	if (!_.isEmpty(errors)) {
+		return res.status(400).send(errors);
 	}
 
 	User.findOne({ email: req.body.email })
@@ -51,7 +61,7 @@ router.post('/register', (req, res) => {
 });
 
 // GET /login - logs user into service
-router.get('/login', (req, res) => {
+router.get('/login/', (req, res) => {
 	if (!req.body.email) {
 		return res.status(400).send({ email: 'Please provide an email' });
 	}
@@ -94,7 +104,7 @@ router.get('/login', (req, res) => {
 					})
 					.catch(err => console.log(err));
 			} else {
-				return res.status(401).send({ email: 'User not found' });
+				return res.status(400).send({ email: 'User not found' });
 			}
 		})
 		.catch(err => console.log(err));
