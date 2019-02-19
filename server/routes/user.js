@@ -79,7 +79,11 @@ router.get('/login', (req, res) => {
 								process.env.jwt_key,
 								{ expiresIn: 3600 },
 								(err, token) => {
-									res.json({ success: true, token: `Bearer ${token}` });
+									res.json({
+										success: true,
+										token: `Bearer ${token}`,
+										id: user._id
+									});
 								}
 							);
 						} else {

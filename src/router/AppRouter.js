@@ -1,10 +1,8 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
 
+import { history } from '../utils/history';
 import TodoDashboard from '../components/TodoDashboard';
-
-export const history = createHistory();
 
 const AppRouter = () => (
 	<Router history={history}>

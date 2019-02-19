@@ -36,9 +36,14 @@ module.exports = env => {
 		devtool: isProduction ? 'sourcemap' : 'inline-source-map',
 		devServer: {
 			contentBase: path.join(__dirname, 'public'),
-			port: 3000,
+			port: 8080,
 			historyApiFallback: true,
-			publicPath: '/dist/'
+			publicPath: '/dist/',
+			proxy: {
+				'/api': {
+					target: 'http://localhost:8080'
+				}
+			}
 		}
 	};
 };
