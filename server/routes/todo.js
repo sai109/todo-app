@@ -5,6 +5,29 @@ const { ObjectID } = require('mongodb');
 
 const router = express.Router();
 
+// POST /todo - Adds a new todo
+router.post(
+	'/todo',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		if (!req.body.todo) {
+			return res
+				.status(400)
+				.send({ error: 'Please provide a todo to complete' });
+		}
+
+		newTodo = new Todo({
+			body: req.body.todo,
+			_creator: req.user._id
+		});
+
+		newTodo
+			.save()
+			.then(() => res.status(200).json({ newTodo }))
+			.catch(err => console.log(err));
+	}
+);
+
 // GET /todos - Gets all todos associated with user
 router.get(
 	'/todos',

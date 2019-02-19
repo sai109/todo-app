@@ -2,6 +2,8 @@ const todoReducerDefaultState = [];
 
 export default (state = todoReducerDefaultState, action) => {
 	switch (action.type) {
+		case 'GET_TODOS':
+			return [actions.todos];
 		case 'ADD_TODO':
 			return [...state, action.todo];
 		case 'DELETE_TODO':

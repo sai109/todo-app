@@ -24,6 +24,47 @@ afterEach(done => {
 	User.remove({}).then(() => done());
 });
 
+describe('POST /todo', () => {
+	it('should return 401 if user not logged in ', done => {
+		request(app)
+			.post('/api/todo')
+			.expect(401)
+			.end(done);
+	});
+
+	it('should return 400 if todo not provided', done => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+
+		request(app)
+			.post('/api/todo')
+			.set('Authorization', `Bearer ${token}`)
+			.expect(400)
+			.end(done);
+	});
+
+	it('should add todo', done => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600
+		});
+		const todoBody = 'Test 123';
+
+		request(app)
+			.post('/api/todo')
+			.set('Authorization', `Bearer ${token}`)
+			.send({ todo: todoBody })
+			.expect(200)
+			.end(() => {
+				Todo.findOne({ body: todoBody })
+					.then(done())
+					.catch(err => done(err));
+			});
+	});
+});
+
 describe('GET /todos', () => {
 	it('should return 401 if user not logged in', done => {
 		request(app)
