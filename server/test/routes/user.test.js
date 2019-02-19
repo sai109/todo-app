@@ -91,7 +91,7 @@ describe('POST /login', () => {
 			.expect(200)
 			.end(() => {
 				request(app)
-					.get('/api/login')
+					.post('/api/login')
 					.send({ email, password })
 					.expect(200)
 					.end(done);
@@ -107,7 +107,7 @@ describe('POST /login', () => {
 			.expect(200)
 			.end(() => {
 				request(app)
-					.get('/api/login')
+					.post('/api/login')
 					.send({ email, password: '12345678' })
 					.expect(401)
 					.end(done);
@@ -116,7 +116,7 @@ describe('POST /login', () => {
 
 	it('should send 400 if email not provided', done => {
 		request(app)
-			.post('/api/register')
+			.post('/api/login')
 			.send({ password })
 			.expect(400)
 			.end(done);
@@ -125,7 +125,7 @@ describe('POST /login', () => {
 	it('should send 400 if email not valid', done => {
 		const email = 'luke123.com';
 		request(app)
-			.post('/api/register')
+			.post('/api/login')
 			.send({ email, password })
 			.expect(400)
 			.end(done);
@@ -133,7 +133,7 @@ describe('POST /login', () => {
 
 	it('should send 400 if password not provided', done => {
 		request(app)
-			.post('/api/register')
+			.post('/api/login')
 			.send({ email })
 			.expect(400)
 			.end(done);
