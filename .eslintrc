@@ -18,7 +18,7 @@
 		"no-empty": "off",
 		"react/prop-types": "off",
 		"prefer-arrow-callback": "error",
-		"no-console": "off",
+		"no-console": 2,
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"linebreak-style": ["error", "unix"],
 		"quotes": ["error", "single"],

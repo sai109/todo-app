@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const validator = require('validator');
 const _ = require('lodash');
 const { User } = require('../models/user');
+const logger = require('../../logger/logger');
 
 const router = express.Router();
 
@@ -52,24 +53,32 @@ router.post('/register', (req, res) => {
 						newUser
 							.save()
 							.then(user => res.status(200).json(user))
-							.catch(err => console.log(err));
+							.catch(err => logger.error(err));
 					});
 				});
 			}
 		})
-		.catch(err => console.log(err));
+		.catch(err => logger.error(err));
 });
 
 // GET /login - logs user into service
-router.get('/login/', (req, res) => {
-	if (!req.body.email) {
-		return res.status(400).send({ email: 'Please provide an email' });
-	}
+router.post('/login', (req, res) => {
+	req.body.email = req.body.email ? req.body.email : '';
+	req.body.password = req.body.password ? req.body.password : '';
+	let errors = {};
+
 	if (!validator.isEmail(req.body.email)) {
-		return res.status(400).send({ email: 'Email invalid' });
+		errors.email = 'Email invalid';
+	}
+	if (!req.body.email) {
+		errors.email = 'Please provide an email';
 	}
 	if (!req.body.password) {
-		return res.status(400).send({ password: 'Please provide an password' });
+		errors.password = 'Please provide an password';
+	}
+
+	if (!_.isEmpty(errors)) {
+		return res.status(400).send(errors);
 	}
 
 	const userEmail = req.body.email;
@@ -83,7 +92,7 @@ router.get('/login/', (req, res) => {
 					.then(isMatch => {
 						if (isMatch) {
 							// generate token
-							const payload = { email: userEmail };
+							const payload = { email: userEmail, id: user._id };
 							jwt.sign(
 								payload,
 								process.env.jwt_key,
@@ -102,12 +111,12 @@ router.get('/login/', (req, res) => {
 								.send({ password: 'Your password is incorrect' });
 						}
 					})
-					.catch(err => console.log(err));
+					.catch(err => logger.log(err));
 			} else {
-				return res.status(400).send({ email: 'User not found' });
+				return res.status(400).send({ user: 'User not found' });
 			}
 		})
-		.catch(err => console.log(err));
+		.catch(err => logger.log(err));
 });
 
 module.exports = router;

@@ -20,7 +20,6 @@ export const loginUser = (userData, history) => dispatch => {
 			const { token, id } = res.data;
 			localStorage.setItem('token', token);
 			setAuthToken(token);
-			setUserID(id);
 			dispatch({ type: 'LOGIN', payload: { id, token } });
 			history.push('/dashboard');
 		})
@@ -36,4 +35,11 @@ export const logoutUser = () => dispatch => {
 	localStorage.removeItem('token');
 	setAuthToken(undefined);
 	dispatch({ type: 'LOGOUT' });
+};
+
+export const setCurrentUser = ({ id }, token) => dispatch => {
+	dispatch({
+		type: 'SET_USER',
+		payload: { id, token }
+	});
 };

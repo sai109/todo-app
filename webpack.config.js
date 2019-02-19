@@ -38,10 +38,9 @@ module.exports = env => {
 			contentBase: path.join(__dirname, 'public'),
 			port: 8080,
 			historyApiFallback: true,
-			publicPath: '/dist/',
 			proxy: {
 				'/api': {
-					target: 'http://localhost:8080'
+					target: 'http://localhost:3000'
 				}
 			}
 		}

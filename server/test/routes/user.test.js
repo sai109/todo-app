@@ -81,7 +81,7 @@ describe('POST /register', () => {
 	});
 });
 
-describe('GET /login', () => {
+describe('POST /login', () => {
 	const email = 'example@example.com';
 	const password = '1234567';
 	it('should send 200 if email and password are correct', done => {

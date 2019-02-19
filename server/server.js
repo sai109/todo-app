@@ -31,9 +31,9 @@ app.post('*', (req, res) => {
 	res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-	console.log(`Server is up on port ${port}`);
+	logger.error(`Server is up on port ${port}`);
 });
 
 module.exports = { app };

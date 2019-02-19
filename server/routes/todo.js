@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const { Todo } = require('../models/todo');
 const { ObjectID } = require('mongodb');
+const logger = require('../../logger/logger');
 
 const router = express.Router();
 
@@ -24,7 +25,7 @@ router.post(
 		newTodo
 			.save()
 			.then(() => res.status(200).json({ newTodo }))
-			.catch(err => console.log(err));
+			.catch(err => logger.error(err));
 	}
 );
 
@@ -41,7 +42,7 @@ router.get(
 					res.status(404).json({ error: 'You seem to not have any todos' });
 				}
 			})
-			.catch(err => console.log(err));
+			.catch(err => logger.error(err));
 	}
 );
 
@@ -61,7 +62,7 @@ router.get(
 						res.status(404).json({ error: 'Todos not found' });
 					}
 				})
-				.catch(err => console.log(err));
+				.catch(err => logger.error(err));
 		} else {
 			res.status(400).json({
 				error: 'Please a valid id for the todo you would like to find'
