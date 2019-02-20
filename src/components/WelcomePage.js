@@ -8,7 +8,9 @@ export default class WelcomePage extends Component {
 				<button>
 					<a href="/login">Login</a>
 				</button>
-				<button>Register</button>
+				<button>
+					<a href="/register">Register</a>
+				</button>
 			</div>
 		);
 	}

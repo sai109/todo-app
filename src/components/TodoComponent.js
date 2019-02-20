@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class TodoComponent extends Component {
-	render() {
-		return (
-			<div>
-				<h3>TodoComponent</h3>
-			</div>
-		);
-	}
-}
+export default ({ todo, removeTodo }) => (
+	<div>
+		<h3>{todo.body}</h3>
+		<button onClick={() => removeTodo(todo._id)}>Delete Todo</button>
+	</div>
+);

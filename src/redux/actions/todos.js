@@ -18,17 +18,20 @@ export const addTodo = todoData => dispatch => {
 };
 
 export const removeTodo = id => dispatch => {
-	axios.delete(`/api/todo/${id}`).then(
-		dispatch({
-			type: 'DELETE_TODO',
-			id
-		}).catch(err =>
+	axios
+		.delete(`/api/todo/${id}`)
+		.then(
+			dispatch({
+				type: 'DELETE_TODO',
+				id
+			})
+		)
+		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data
 			})
-		)
-	);
+		);
 };
 
 export const editTodo = (id, updates) => dispatch => {
@@ -52,7 +55,7 @@ export const getTodos = () => dispatch => {
 	axios.get('/api/todos').then(res =>
 		dispatch({
 			type: 'GET_TODOS',
-			todos: res.body.todos
+			todos: res.data.todos
 		})
 	);
 };

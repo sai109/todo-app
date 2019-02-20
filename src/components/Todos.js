@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoComponent from './TodoComponent';
 
-export default class Todos extends Component {
-	render() {
-		return (
-			<div>
-				<h2>Todos Component</h2>
-				<TodoComponent />
-			</div>
-		);
-	}
-}
+export default props => (
+	<div className="todos">
+		<h2>Todo Component</h2>
+		{props.todos.map(todo => (
+			<TodoComponent key={todo._id} todo={todo} removeTodo={props.removeTodo} />
+		))}
+	</div>
+);

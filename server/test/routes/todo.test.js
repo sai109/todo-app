@@ -88,7 +88,7 @@ describe('GET /todos', () => {
 			.end(done);
 	});
 
-	it('should return 404 if no todos are found', done => {
+	it('should return 200 if no todos are found', done => {
 		const payload = { email: users[1].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
 			expiresIn: 3600
@@ -96,7 +96,10 @@ describe('GET /todos', () => {
 		request(app)
 			.get('/api/todos')
 			.set('Authorization', `Bearer ${token}`)
-			.expect(404)
+			.expect(200)
+			.expect(res => {
+				expect(res.body.todos.length).toBe(0);
+			})
 			.end(done);
 	});
 });

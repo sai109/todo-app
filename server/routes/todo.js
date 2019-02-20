@@ -39,7 +39,7 @@ router.get(
 				if (todos.length > 0) {
 					return res.status(200).json({ todos });
 				} else {
-					res.status(404).json({ error: 'You seem to not have any todos' });
+					res.status(200).json({ todos: [] });
 				}
 			})
 			.catch(err => logger.error(err));
@@ -114,13 +114,15 @@ router.delete(
 		if (!ObjectID.isValid(id)) {
 			return res.status(400).send({ error: 'Please submit a valid ID' });
 		}
-		Todo.findOneAndRemove({ _id: id, _creator: req.user._id }).then(todo => {
-			if (!todo) {
-				return res.status(404).send({ error: 'Todo not found' });
-			} else {
-				res.status(200).send({ todo });
-			}
-		});
+		Todo.findOneAndRemove({ _id: id, _creator: req.user._id })
+			.then(todo => {
+				if (!todo) {
+					return res.status(404).send({ error: 'Todo not found' });
+				} else {
+					res.status(200).send({ todo });
+				}
+			})
+			.catch(err => res.status(404).send(err));
 	}
 );
 module.exports = router;
