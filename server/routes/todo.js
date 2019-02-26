@@ -19,14 +19,14 @@ router.post(
 
 		newTodo = new Todo({
 			body: req.body.todo,
-			_creator: req.user._id
+			_creator: req.user._id,
 		});
 
 		newTodo
 			.save()
 			.then(() => res.status(200).json({ newTodo }))
 			.catch(err => logger.error(err));
-	}
+	},
 );
 
 // GET /todos - Gets all todos associated with user
@@ -43,7 +43,7 @@ router.get(
 				}
 			})
 			.catch(err => logger.error(err));
-	}
+	},
 );
 
 // GET /todo/:id - Gets an individual todo
@@ -65,10 +65,10 @@ router.get(
 				.catch(err => logger.error(err));
 		} else {
 			res.status(400).json({
-				error: 'Please a valid id for the todo you would like to find'
+				error: 'Please a valid id for the todo you would like to find',
 			});
 		}
-	}
+	},
 );
 
 // PATCH /todo/:id - Edits an individual todo
@@ -94,7 +94,7 @@ router.patch(
 		Todo.findOneAndUpdate(
 			{ _id: id, _creator: req.user._id },
 			{ $set: updates },
-			{ new: true }
+			{ new: true },
 		).then(todo => {
 			if (todo) {
 				res.status(200).send({ todo });
@@ -102,7 +102,7 @@ router.patch(
 				res.status(404).send({ error: 'Todo not found' });
 			}
 		});
-	}
+	},
 );
 
 // DELETE /todo/:id - Should delete a todo
@@ -123,6 +123,6 @@ router.delete(
 				}
 			})
 			.catch(err => res.status(404).send(err));
-	}
+	},
 );
 module.exports = router;

@@ -1,5 +1,5 @@
 const expect = require('expect');
-const { app } = require('../../server');
+const app = require('../../app');
 const request = require('supertest');
 const { User } = require('../../models/user');
 const {
@@ -7,7 +7,7 @@ const {
 	todos,
 	populateUsers,
 	populateTodos,
-	todoOneID
+	todoOneID,
 } = require('../seeds/seeds');
 const { Todo } = require('../../models/todo');
 const jwt = require('jsonwebtoken');
@@ -25,58 +25,50 @@ afterEach(done => {
 });
 
 describe('POST /todo', () => {
-	it('should return 401 if user not logged in ', done => {
-		request(app)
-			.post('/api/todo')
-			.expect(401)
-			.end(done);
+	it('should return 401 if user not logged in ', async () => {
+		const res = await request(app).post('/api/todo');
+		expect(res.status).toBe(401);
 	});
 
-	it('should return 400 if todo not provided', done => {
+	it('should return 400 if todo not provided', async () => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 
-		request(app)
+		const res = await request(app)
 			.post('/api/todo')
-			.set('Authorization', `Bearer ${token}`)
-			.expect(400)
-			.end(done);
+			.set('Authorization', `Bearer ${token}`);
+		expect(res.status).toBe(400);
 	});
 
-	it('should add todo', done => {
+	it('should add todo', async () => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const todoBody = 'Test 123';
 
-		request(app)
+		const res = await request(app)
 			.post('/api/todo')
 			.set('Authorization', `Bearer ${token}`)
-			.send({ todo: todoBody })
-			.expect(200)
-			.end(() => {
-				Todo.findOne({ body: todoBody })
-					.then(done())
-					.catch(err => done(err));
-			});
+			.send({ todo: todoBody });
+		expect(res.status).toBe(200);
+		const todo = await Todo.findOne({ body: todoBody });
+		expect(todo.body).toBe(todoBody);
 	});
 });
 
 describe('GET /todos', () => {
-	it('should return 401 if user not logged in', done => {
-		request(app)
-			.get('/api/todos')
-			.expect(401)
-			.end(done);
+	it('should return 401 if user not logged in', async () => {
+		const res = await request(app).get('/api/todos');
+		expect(res.status).toBe(401);
 	});
 
 	it('should return todos if user logged in', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		request(app)
 			.get('/api/todos')
@@ -91,7 +83,7 @@ describe('GET /todos', () => {
 	it('should return 200 if no todos are found', done => {
 		const payload = { email: users[1].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		request(app)
 			.get('/api/todos')
@@ -115,7 +107,7 @@ describe('GET /todo/:id', () => {
 	it('should return 400 if todo id invalid', done => {
 		const payload = { email: users[1].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		request(app)
 			.get('/api/todo/1234')
@@ -127,9 +119,9 @@ describe('GET /todo/:id', () => {
 	it('should return 404 if todo not found', done => {
 		const payload = { email: users[1].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
-		id = new ObjectID();
+		const id = new ObjectID();
 		request(app)
 			.get(`/api/todo/${id}`)
 			.set('Authorization', `Bearer ${token}`)
@@ -140,7 +132,7 @@ describe('GET /todo/:id', () => {
 	it('should return todo if logged in an correct id', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todoOneID.toHexString();
 		request(app)
@@ -159,7 +151,7 @@ describe('GET /todo/:id', () => {
 	it('should deny access if user trys to access some one elses todo', done => {
 		const payload = { email: users[1].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todoOneID.toHexString();
 		request(app)
@@ -181,7 +173,7 @@ describe('PATCH /todo/:id', () => {
 	it('should return 400 if invalid object id', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 
 		request(app)
@@ -194,7 +186,7 @@ describe('PATCH /todo/:id', () => {
 	it('should send 404 if todo not found', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = new ObjectID().toHexString();
 
@@ -209,7 +201,7 @@ describe('PATCH /todo/:id', () => {
 	it('should edit todo body', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todos[0]._id.toHexString();
 		const text = 'Test update';
@@ -218,7 +210,7 @@ describe('PATCH /todo/:id', () => {
 			.patch(`/api/todo/${id}`)
 			.set('authorization', `Bearer ${token}`)
 			.send({
-				body: text
+				body: text,
 			})
 			.expect(200)
 			.expect(res => {
@@ -231,7 +223,7 @@ describe('PATCH /todo/:id', () => {
 	it('should edit todo completed', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todos[0]._id.toHexString();
 		const completed = true;
@@ -240,7 +232,7 @@ describe('PATCH /todo/:id', () => {
 			.patch(`/api/todo/${id}`)
 			.set('authorization', `Bearer ${token}`)
 			.send({
-				completed
+				completed,
 			})
 			.expect(200)
 			.expect(res => {
@@ -253,7 +245,7 @@ describe('PATCH /todo/:id', () => {
 	it('should not edit todo if no edits passed', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todos[0]._id.toHexString();
 		request(app)
@@ -279,7 +271,7 @@ describe('DELETE /todo/:id', () => {
 	it('should return 400 if user ID is invalid', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		request(app)
 			.delete('/api/todo/123abc')
@@ -291,7 +283,7 @@ describe('DELETE /todo/:id', () => {
 	it('should not raise 404 if todo not found', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = new ObjectID().toHexString();
 
@@ -305,7 +297,7 @@ describe('DELETE /todo/:id', () => {
 	it('should not be able to delete another users todo', done => {
 		const payload = { email: users[1].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todoOneID.toHexString();
 
@@ -319,7 +311,7 @@ describe('DELETE /todo/:id', () => {
 	it('should delete a todo', done => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
-			expiresIn: 3600
+			expiresIn: 3600,
 		});
 		const id = todoOneID.toHexString();
 

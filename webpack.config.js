@@ -13,7 +13,7 @@ module.exports = env => {
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
-				filename: './style/style.css'
+				filename: './dist/style.css'
 			})
 		],
 		module: {
