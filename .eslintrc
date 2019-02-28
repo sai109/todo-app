@@ -25,7 +25,8 @@
 		"semi": ["error", "always"],
 		"no-undef": "off",
 		"react/display-name": "off",
-		"react/no-unescaped-entities": "off"
+		"react/no-unescaped-entities": "off",
+		"strict": "error"
 	},
 	"settings": {
 		"react": {

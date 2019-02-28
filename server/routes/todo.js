@@ -17,7 +17,7 @@ router.post(
 				.send({ error: 'Please provide a todo to complete' });
 		}
 
-		newTodo = new Todo({
+		const newTodo = new Todo({
 			body: req.body.todo,
 			_creator: req.user._id,
 		});
@@ -51,8 +51,8 @@ router.get(
 	'/todo/:id',
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
-		id = req.params.id;
-		creator = req.user._id;
+		const id = req.params.id;
+		const creator = req.user._id;
 		if (ObjectID.isValid(id)) {
 			Todo.findOne({ _id: id, _creator: creator })
 				.then(todo => {
@@ -95,13 +95,15 @@ router.patch(
 			{ _id: id, _creator: req.user._id },
 			{ $set: updates },
 			{ new: true },
-		).then(todo => {
-			if (todo) {
-				res.status(200).send({ todo });
-			} else {
-				res.status(404).send({ error: 'Todo not found' });
-			}
-		});
+		)
+			.then(todo => {
+				if (todo) {
+					res.status(200).send({ todo });
+				} else {
+					res.status(404).send({ error: 'Todo not found' });
+				}
+			})
+			.catch(err => logger.error(err));
 	},
 );
 

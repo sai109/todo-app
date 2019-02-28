@@ -1,5 +1,5 @@
 /node_modules/
 /logs/
-/.nyc_output/
 /public\/dist/
 /yarn.error.log/
+/yarn.lock/

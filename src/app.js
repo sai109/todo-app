@@ -13,7 +13,7 @@ if (localStorage.token) {
 
 	if (decoded.exp < currentTime) {
 		store.dispatch(logoutUser());
-		windows.location.href = '/login';
+		window.location.href = '/login';
 	} else {
 		setAuthToken(localStorage.token);
 		store.dispatch(setCurrentUser(decoded, localStorage.token));
