@@ -11,7 +11,8 @@
 		"ecmaVersion": 2017,
 		"ecmaFeatures": {
 			"jsx": true
-		}
+		},
+		"impliedStrict": true
 	},
 	"plugins": ["react", "babel"],
 	"rules": {
@@ -26,7 +27,7 @@
 		"no-undef": "off",
 		"react/display-name": "off",
 		"react/no-unescaped-entities": "off",
-		"strict": "error"
+		"strict": ["error", "safe"]
 	},
 	"settings": {
 		"react": {

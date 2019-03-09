@@ -4,7 +4,7 @@ const path = require('path');
 // define the custom settings for each transport (file, console)
 var options = {
 	file: {
-		level: 'info',
+		level: 'error',
 		filename: path.join(__dirname, '../logs/server.log'),
 		handleExceptions: true,
 		json: true,
