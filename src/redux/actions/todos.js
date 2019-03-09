@@ -6,14 +6,14 @@ export const addTodo = todoData => dispatch => {
 		.then(
 			dispatch({
 				type: 'ADD_TODO',
-				todo: todoData
-			})
+				todo: todoData,
+			}),
 		)
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
-				payload: err.response.data
-			})
+				payload: err.response.data,
+			}),
 		);
 };
 
@@ -23,14 +23,14 @@ export const removeTodo = id => dispatch => {
 		.then(
 			dispatch({
 				type: 'DELETE_TODO',
-				id
-			})
+				id,
+			}),
 		)
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
-				payload: err.response.data
-			})
+				payload: err.response.data,
+			}),
 		);
 };
 
@@ -40,14 +40,14 @@ export const editTodo = (id, updates) => dispatch => {
 		.then(
 			dispatch({
 				type: 'UPDATE_TODO',
-				updates
-			})
+				updates: updates,
+			}),
 		)
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
-				payload: err.response.data
-			})
+				payload: err.response.data,
+			}),
 		);
 };
 
@@ -55,12 +55,12 @@ export const getTodos = () => dispatch => {
 	axios.get('/api/todos').then(res =>
 		dispatch({
 			type: 'GET_TODOS',
-			todos: res.data.todos
-		})
+			todos: res.data.todos,
+		}),
 	);
 };
 
 export const getTodo = id => ({
 	type: 'GET_TODO',
-	id
+	id,
 });

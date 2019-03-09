@@ -12,9 +12,7 @@ router.post(
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {
 		if (!req.body.todo) {
-			return res
-				.status(400)
-				.send({ error: 'Please provide a todo to complete' });
+			return res.status(400).send({ noTodo: 'Please provide a todo to add' });
 		}
 
 		const newTodo = new Todo({

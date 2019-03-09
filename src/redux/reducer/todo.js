@@ -13,10 +13,11 @@ export default (state = todoReducerDefaultState, action) => {
 		case 'EDIT_TODO':
 			return state.map(todo => {
 				if (todo.id === action.id) {
-					return {
+					const todo = {
 						...todo,
-						...todo.updates
+						...action.updates,
 					};
+					return todo;
 				} else {
 					return todo;
 				}

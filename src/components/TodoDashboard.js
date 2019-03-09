@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
+
+import AddTodo from './AddTodo';
 import Todos from './Todos';
-import { getTodos, removeTodo } from '../redux/actions/todos';
+import {
+	addTodo,
+	getTodos,
+	removeTodo,
+	editTodo,
+} from '../redux/actions/todos';
 import { connect } from 'react-redux';
 
 class TodoDashboard extends Component {
 	state = {
-		todos: []
+		todos: [],
+		filterCompleted: false,
+		filteredTodos: [],
+		todoToAdd: '',
 	};
 
 	componentDidMount() {
@@ -14,7 +24,8 @@ class TodoDashboard extends Component {
 
 	static getDerivedStateFromProps(props) {
 		return {
-			todos: props.todos
+			todos: props.todos,
+			filteredTodos: props.todos,
 		};
 	}
 
@@ -25,21 +36,42 @@ class TodoDashboard extends Component {
 		}
 	};
 
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
+
+	addTodo = e => {
+		e.preventDefault();
+		this.props.addTodo({ todo: this.state.todoToAdd });
+		this.props.getTodos();
+	};
 	render() {
 		return (
 			<div>
-				<h1>Dashboard</h1>
-				<Todos todos={this.state.todos} removeTodo={this.removeTodo} />
+				<h1>Your Todos</h1>
+				<AddTodo
+					onSubmit={this.addTodo}
+					ref={this.new_todo}
+					onChange={this.onChange}
+					todoToAdd={this.state.todoToAdd}
+					errors={this.props.errors}
+				/>
+				<Todos
+					todos={this.state.filteredTodos}
+					removeTodo={this.removeTodo}
+					editTodo={this.editTodo}
+				/>
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => ({
-	todos: state.todos
+	todos: state.todos,
+	error: state.errors,
 });
 
 export default connect(
 	mapStateToProps,
-	{ getTodos, removeTodo }
+	{ addTodo, getTodos, removeTodo, editTodo },
 )(TodoDashboard);
