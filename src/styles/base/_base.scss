@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Karla'); // imports the karla font from google fonts
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%; // Sets 1rem and 1em to 10 px
+}
+
+body {
+	font-family: 'Karla', Helvetica, Arial, sans-serif;
+	font-size: $m-size;
+	line-height: 1.6;
+}

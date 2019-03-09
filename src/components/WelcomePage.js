@@ -4,7 +4,7 @@ export default class WelcomePage extends Component {
 	render() {
 		return (
 			<div>
-				<h1>The Time is Now for You To Take Back Control From Your Planner</h1>
+				<h1>Time To Take Back Control</h1>
 				<button>
 					<a href="/login">Login</a>
 				</button>
