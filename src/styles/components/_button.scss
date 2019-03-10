@@ -1,0 +1,27 @@
+.button-group {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.button-group__button {
+	flex-grow: 1;
+	width: 25rem;
+	margin: 0 auto;
+	margin-bottom: $m-size;
+}
+
+.button {
+	background: $light-grey;
+	border: 1px solid $black;
+	border-radius: 1rem;
+	color: $black;
+	font-size: $l-size;
+	padding: $s-size $m-size;
+	text-decoration: none;
+	text-align: center;
+}
+.button:hover {
+	@extend .button;
+	background: darken($light-grey, 10%);
+}

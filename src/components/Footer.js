@@ -3,8 +3,8 @@ import moment from 'moment';
 
 export default () => {
 	return (
-		<footer>
+		<div className="footer">
 			<h3>&copy;AspieCoder {moment().year()}, all rights reserved</h3>
-		</footer>
+		</div>
 	);
 };
