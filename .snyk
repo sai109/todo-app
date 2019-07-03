@@ -1,0 +1,38 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - node-sass > sass-graph > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - concurrently > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/core > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - mongoose > async > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - winston > async > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - webpack-dev-server > http-proxy-middleware > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/core > @babel/types > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - css-loader > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/core > @babel/helpers > @babel/types > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - node-sass > gaze > globule > lodash:
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/preset-env > @babel/plugin-transform-modules-umd > @babel/helper-module-transforms > @babel/types > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/preset-env > @babel/plugin-transform-modules-commonjs > @babel/helper-simple-access > @babel/template > @babel/types > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/generator > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/plugin-proposal-class-properties > @babel/helper-create-class-features-plugin > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
+    - '@babel/preset-env > @babel/plugin-transform-async-to-generator > @babel/helper-remap-async-to-generator > @babel/helper-wrap-function > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash':
+        patched: '2019-07-03T22:07:59.707Z'
