@@ -3,3 +3,4 @@
 /public\/dist/
 /yarn.lock.error/
 .snyk
+/logs/
