@@ -1,5 +1,3 @@
 {
-	"preset": "@shelf/jest-mongodb",
-	"testEnvironment": "node",
-	"setupFiles": ["<rootDir>/server/config/config.js", "<rootDir>/node_modules"]
+	"projects": ["<rootDir>/server"]
 }

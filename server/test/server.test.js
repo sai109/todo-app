@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 const jwt = require('jsonwebtoken');
 const { ObjectID } = require('mongodb');
 const request = require('supertest');

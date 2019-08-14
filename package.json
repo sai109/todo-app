@@ -9,12 +9,12 @@
 		"dev-mode": "concurrently \"yarn dev-server\" \"yarn webpack-dev\"",
 		"dev-server": "cross-env NODE_ENV=development nodemon server/server.js",
 		"test-server": "cross-env NODE_ENV=test nodemon server/server.js",
-		"test": "cross-env NODE_ENV=test jest",
+		"test": "cross-env NODE_ENV=test jest --config jest.config.json",
 		"coverage": "nyc mocha server/**/*.test.js ",
 		"webpack": "webpack",
 		"webpack-dev": "webpack-dev-server --mode=development --env development",
 		"build:prod": "webpack -p --env production --mode=production",
-		"jest": "cross-env NODE_ENV=test jest --detectOpenHandles"
+		"jest": "cross-env NODE_ENV=test jest --config jest.config.json --detectOpenHandles"
 	},
 	"dependencies": {
 		"@babel/core": "^7.2.2",
