@@ -27,7 +27,7 @@ afterEach(async () => {
 describe('POST /register', () => {
 	it('should register a new user', async () => {
 		const email = 'example@gmail.com';
-		const password = '1234567';
+		const password = '1234567aA%&';
 		const res = await request(app)
 			.post('/api/register')
 			.send({ email, password });
@@ -39,7 +39,7 @@ describe('POST /register', () => {
 
 	it('should send 400 if email already exists', async () => {
 		const email = users[0].email;
-		const password = '1234568';
+		const password = '1234567aA%&';
 		const res = await request(app)
 			.post('/api/register')
 			.send({ email, password });
@@ -47,7 +47,7 @@ describe('POST /register', () => {
 	});
 
 	it('should send 400 if email not provided', async () => {
-		const password = '12345678';
+		const password = '1234567aA%&';
 		const res = await request(app)
 			.post('/api/register')
 			.send({ password });
@@ -55,7 +55,7 @@ describe('POST /register', () => {
 	});
 
 	it('should send 400 if email not valid', async () => {
-		const password = '12345678';
+		const password = '1234567aA%&';
 		const email = 'luke123.com';
 		const res = await request(app)
 			.post('/api/register')
@@ -71,9 +71,45 @@ describe('POST /register', () => {
 		expect(res.status).toBe(400);
 	});
 
-	it('should send 400 if password less than 6 characters', async () => {
+	it('should send 400 if password less than 9 characters', async () => {
 		const email = 'example@gmail.com';
-		const password = '1234';
+		const password = '12343478';
+		const res = await request(app)
+			.post('/api/register')
+			.send({ email, password });
+		expect(res.statusCode).toBe(400);
+	});
+
+	it('should send 400 if password doesn\'t contain a lowercase character', async () => {
+		const email = 'example@gmail.com';
+		const password = '123456789&A';
+		const res = await request(app)
+			.post('/api/register')
+			.send({ email, password });
+		expect(res.statusCode).toBe(400);
+	});
+
+	it('should send 400 if password doesn\'t contain an uppercase character', async () => {
+		const email = 'example@gmail.com';
+		const password = '123456789&a';
+		const res = await request(app)
+			.post('/api/register')
+			.send({ email, password });
+		expect(res.statusCode).toBe(400);
+	});
+
+	it('should send 400 if password doesn\'t contain a number', async () => {
+		const email = 'example@gmail.com';
+		const password = 'asdfefdfghtdhgtASDA&A';
+		const res = await request(app)
+			.post('/api/register')
+			.send({ email, password });
+		expect(res.statusCode).toBe(400);
+	});
+
+	it('should send 400 if password doesn\'t contain a special character', async () => {
+		const email = 'example@gmail.com';
+		const password = '123456789aA';
 		const res = await request(app)
 			.post('/api/register')
 			.send({ email, password });
@@ -83,7 +119,7 @@ describe('POST /register', () => {
 
 describe('POST /login', () => {
 	const email = 'example@example.com';
-	const password = '1234567';
+	const password = '1234567aA%&';
 	it('should send 200 if email and password are correct', async () => {
 		await request(app)
 			.post('/api/register')
@@ -97,7 +133,7 @@ describe('POST /login', () => {
 
 	it('should send 401 if password is incorrect', async () => {
 		const email = 'example@example.com';
-		const password = '1234567';
+		const password = '1234567aA%&';
 		const reg = await request(app)
 			.post('/api/register')
 			.send({ email, password });

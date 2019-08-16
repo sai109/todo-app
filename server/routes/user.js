@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
 const _ = require('lodash');
+
+const validateRegister = require('../validation/register');
 const { User } = require('../models/user');
 const logger = require('../../logger/logger');
 
@@ -15,22 +17,7 @@ router.post('/register', (req, res) => {
 	req.body.email = req.body.email ? req.body.email : '';
 	req.body.password = req.body.password ? req.body.password : '';
 
-	let errors = {};
-	if (!validator.isEmail(req.body.email)) {
-		errors.email = 'Email invalid';
-	}
-
-	if (req.body.password.length < 6) {
-		errors.password = 'Password must be at least 6 letters';
-	}
-
-	if (!req.body.password) {
-		errors.password = 'Please provide an password';
-	}
-
-	if (!req.body.email) {
-		errors.email = 'Please provide an email';
-	}
+	const errors = validateRegister(req.body);
 
 	if (!_.isEmpty(errors)) {
 		return res.status(400).send(errors);
@@ -43,7 +30,7 @@ router.post('/register', (req, res) => {
 			} else {
 				const newUser = new User({
 					email: req.body.email,
-					password: req.body.password
+					password: req.body.password,
 				});
 				bcrypt.genSalt(10, (err, salt) => {
 					if (err) throw err;
@@ -101,9 +88,9 @@ router.post('/login', (req, res) => {
 									res.json({
 										success: true,
 										token: `Bearer ${token}`,
-										id: user._id
+										id: user._id,
 									});
-								}
+								},
 							);
 						} else {
 							return res
@@ -113,7 +100,7 @@ router.post('/login', (req, res) => {
 					})
 					.catch(err => logger.log(err));
 			} else {
-				return res.status(400).send({ user: 'User not found' });
+				return res.status(400).send({ email: 'User not found' });
 			}
 		})
 		.catch(err => logger.log(err));
