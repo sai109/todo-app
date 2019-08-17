@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 
 export const registerUser = userData => dispatch => {
-	axios
+	return axios
 		.post('/api/register', userData)
 		.then(() => {
 			dispatch({ type: 'CLEAR_ERRORS' });
@@ -17,7 +17,7 @@ export const registerUser = userData => dispatch => {
 };
 
 export const loginUser = (userData, history) => dispatch => {
-	axios
+	return axios
 		.post('/api/login', userData)
 		.then(res => {
 			const { token, id } = res.data;

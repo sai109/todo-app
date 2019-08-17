@@ -9,7 +9,7 @@
 		"dev-mode": "concurrently \"yarn dev-server\" \"yarn webpack-dev\"",
 		"dev-server": "cross-env NODE_ENV=development nodemon server/server.js",
 		"test-server": "cross-env NODE_ENV=test nodemon server/server.js",
-		"test": "cross-env NODE_ENV=test jest --config jest.config.json --force-exit",
+		"test": "cross-env NODE_ENV=test jest --config jest.config.json",
 		"coverage": "nyc mocha server/**/*.test.js ",
 		"webpack": "webpack",
 		"webpack-dev": "webpack-dev-server --mode=development --env development",
@@ -68,10 +68,16 @@
 		"babel-jest": "^24.1.0",
 		"babel-loader": "^8.0.4",
 		"cross-env": "^5.2.0",
+		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.14.0",
+		"enzyme-to-json": "^3.4.0",
 		"eslint": "^5.10.0",
 		"eslint-plugin-react": "^7.11.1",
+		"fetch-mock": "^7.3.9",
 		"jest": "^24.3.1",
+		"node-fetch": "^2.6.0",
 		"nodemon": "^1.18.9",
+		"redux-mock-store": "^1.5.3",
 		"webpack-cli": "^3.2.1"
 	}
 }

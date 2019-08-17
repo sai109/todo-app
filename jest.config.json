@@ -1,3 +1,7 @@
 {
-	"projects": ["<rootDir>/server"]
+	"setupFiles": [
+		"<rootDir>/server/config/config.js",
+		"<rootDir>/src/tests/setupTests.js"
+	],
+	"snapshotSerializers": ["enzyme-to-json/serializer"]
 }
