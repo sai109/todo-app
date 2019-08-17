@@ -1,11 +1,10 @@
 import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = userData => dispatch => {
 	axios
 		.post('/api/register', userData)
 		.then(() => {
-			history.push('/login');
 			dispatch({ type: 'CLEAR_ERRORS' });
 			loginUser(userData);
 		})

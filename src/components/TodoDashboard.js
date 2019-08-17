@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 
 class TodoDashboard extends Component {
 	state = {
+		loading: false,
 		todos: [],
 		filterCompleted: false,
 		filteredTodos: [],
@@ -19,8 +20,25 @@ class TodoDashboard extends Component {
 	};
 
 	componentDidMount() {
+		this.setState({
+			loading: true,
+		});
 		this.props.getTodos();
+		this.setState({
+			loading: false,
+		});
 	}
+
+	onToggle = todo => {
+		todo.completed = !todo.completed;
+		this.editTodo(todo._id, {
+			completed: todo.completed,
+		});
+	};
+
+	editTodo = (id, todoData) => {
+		this.props.editTodo(id, todoData);
+	};
 
 	static getDerivedStateFromProps(props) {
 		return {
@@ -46,9 +64,12 @@ class TodoDashboard extends Component {
 		this.props.getTodos();
 	};
 	render() {
-		return (
+		const content = (
 			<div>
-				<h1>Your Todos</h1>
+				<div>
+					<h1>Your Todos</h1>
+					<button>Logout</button>
+				</div>
 				<AddTodo
 					onSubmit={this.addTodo}
 					ref={this.new_todo}
@@ -59,16 +80,19 @@ class TodoDashboard extends Component {
 				<Todos
 					todos={this.state.filteredTodos}
 					removeTodo={this.removeTodo}
-					editTodo={this.editTodo}
+					onToggle={this.onToggle}
 				/>
 			</div>
 		);
+
+		const toRender = this.state.loading ? <p>Loading...</p> : content;
+		return toRender;
 	}
 }
 
 const mapStateToProps = state => ({
 	todos: state.todos,
-	error: state.errors,
+	errors: state.errors,
 });
 
 export default connect(

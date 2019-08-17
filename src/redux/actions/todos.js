@@ -35,6 +35,7 @@ export const removeTodo = id => dispatch => {
 };
 
 export const editTodo = (id, updates) => dispatch => {
+	console.log(updates);
 	axios
 		.patch(`/api/todo/${id}`, updates)
 		.then(

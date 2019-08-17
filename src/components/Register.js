@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../redux/actions/auth';
-import { history } from '../utils/history';
 
 class Register extends Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
 	};
 	onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
@@ -16,9 +15,9 @@ class Register extends Component {
 		e.preventDefault();
 		const newUser = {
 			email: this.state.email,
-			password: this.state.password
+			password: this.state.password,
 		};
-		this.props.registerUser(newUser, history);
+		this.props.registerUser(newUser);
 	};
 
 	render() {
@@ -56,10 +55,10 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-	errors: state.errors
+	errors: state.errors,
 });
 
 export default connect(
 	mapStateToProps,
-	{ registerUser }
+	{ registerUser },
 )(Register);
