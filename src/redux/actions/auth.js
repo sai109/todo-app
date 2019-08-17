@@ -4,12 +4,16 @@ import setAuthToken from '../../utils/setAuthToken';
 export const registerUser = (userData, history) => dispatch => {
 	axios
 		.post('/api/register', userData)
-		.then(() => history.push('/login'))
+		.then(() => {
+			history.push('/login');
+			dispatch({ type: 'CLEAR_ERRORS' });
+			loginUser(userData);
+		})
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
-				payload: err.response.data
-			})
+				payload: err.response.data,
+			}),
 		);
 };
 
@@ -22,12 +26,13 @@ export const loginUser = (userData, history) => dispatch => {
 			setAuthToken(token);
 			dispatch({ type: 'LOGIN', payload: { id, token } });
 			history.push('/dashboard');
+			dispatch({ type: 'CLEAR_ERRORS' });
 		})
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
-				payload: err.response.data
-			})
+				payload: err.response.data,
+			}),
 		);
 };
 
@@ -40,6 +45,6 @@ export const logoutUser = () => dispatch => {
 export const setCurrentUser = ({ id }, token) => dispatch => {
 	dispatch({
 		type: 'SET_USER',
-		payload: { id, token }
+		payload: { id, token },
 	});
 };

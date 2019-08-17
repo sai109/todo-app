@@ -26,7 +26,7 @@ module.exports = body => {
 	}
 
 	if (body.password.length < 9) {
-		errors.password = 'Password must be at least 6 letters';
+		errors.password = 'Password must be at least 9 letters';
 	}
 
 	if (!body.password) {
