@@ -19,7 +19,7 @@ class TodoDashboard extends Component {
 		todoToAdd: '',
 	};
 
-	componentDidMount() {
+	componentWillMount() {
 		this.setState({
 			loading: true,
 		});

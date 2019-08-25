@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render footer correctly 1`] = `
+<div
+  className="footer"
+>
+  <h3>
+    ©AspieCoder 
+    2019
+    , all rights reserved
+  </h3>
+</div>
+`;
