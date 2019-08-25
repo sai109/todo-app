@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const addTodo = todoData => dispatch => {
-	axios
+	return axios
 		.post('/api/todo', todoData)
 		.then(
 			dispatch({
@@ -18,7 +18,7 @@ export const addTodo = todoData => dispatch => {
 };
 
 export const removeTodo = id => dispatch => {
-	axios
+	return axios
 		.delete(`/api/todo/${id}`)
 		.then(
 			dispatch({
@@ -35,7 +35,7 @@ export const removeTodo = id => dispatch => {
 };
 
 export const editTodo = (id, updates) => dispatch => {
-	axios
+	return axios
 		.patch(`/api/todo/${id}`, updates)
 		.then(
 			dispatch({
@@ -52,7 +52,7 @@ export const editTodo = (id, updates) => dispatch => {
 };
 
 export const getTodos = () => dispatch => {
-	axios.get('/api/todos').then(res =>
+	return axios.get('/api/todos').then(res =>
 		dispatch({
 			type: 'GET_TODOS',
 			todos: res.data.todos,
