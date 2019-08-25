@@ -54,7 +54,6 @@
 		"redux": "^4.0.1",
 		"redux-thunk": "^2.3.0",
 		"sass-loader": "^7.1.0",
-		"snyk": "^1.219.0",
 		"style-loader": "^0.23.1",
 		"superagent": "^4.0.0",
 		"supertest": "^3.3.0",
