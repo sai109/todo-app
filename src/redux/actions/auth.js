@@ -40,10 +40,3 @@ export const logoutUser = () => dispatch => {
 	setAuthToken(undefined);
 	dispatch({ type: 'LOGOUT' });
 };
-
-export const setCurrentUser = ({ id }, token) => dispatch => {
-	dispatch({
-		type: 'SET_USER',
-		payload: { id, token },
-	});
-};
