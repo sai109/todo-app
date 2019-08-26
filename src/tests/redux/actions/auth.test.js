@@ -142,3 +142,19 @@ it('should logout a user', done => {
 	expect(store.getActions()).toEqual([{ type: 'LOGOUT' }]);
 	done();
 });
+
+it('should set current user', done => {
+	const store = mockStore();
+
+	store.dispatch(userActions.setCurrentUser({ id: 'TEST_ID' }, 'TEST_TOKEN'));
+	expect(store.getActions()).toEqual([
+		{
+			type: 'SET_USER',
+			payload: {
+				id: 'TEST_ID',
+				token: 'TEST_TOKEN',
+			},
+		},
+	]);
+	done();
+});

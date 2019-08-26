@@ -1,6 +1,11 @@
 import axios from 'axios';
 
+const loadTodos = () => ({
+	type: 'LOADING',
+});
+
 export const addTodo = todoData => dispatch => {
+	dispatch(loadTodos());
 	return axios
 		.post('/api/todo', todoData)
 		.then(

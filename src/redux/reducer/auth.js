@@ -8,6 +8,12 @@ export default (state = {}, action) => {
 			};
 		case 'LOGOUT':
 			return {};
+		case 'SET_USER':
+			return {
+				...state,
+				token: action.payload.token,
+				id: action.payload.id,
+			};
 		default:
 			return state;
 	}

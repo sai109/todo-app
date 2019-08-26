@@ -8,25 +8,19 @@ import {
 	removeTodo,
 	editTodo,
 } from '../redux/actions/todos';
+import { logoutUser } from '../redux/actions/auth';
 import { connect } from 'react-redux';
 
 class TodoDashboard extends Component {
 	state = {
-		loading: false,
 		todos: [],
 		filterCompleted: false,
 		filteredTodos: [],
 		todoToAdd: '',
 	};
 
-	componentWillMount() {
-		this.setState({
-			loading: true,
-		});
+	componentDidMount() {
 		this.props.getTodos();
-		this.setState({
-			loading: false,
-		});
 	}
 
 	onToggle = todo => {
@@ -42,8 +36,8 @@ class TodoDashboard extends Component {
 
 	static getDerivedStateFromProps(props) {
 		return {
-			todos: props.todos,
-			filteredTodos: props.todos,
+			todos: props.todo.todos,
+			filteredTodos: props.todo.todos,
 		};
 	}
 
@@ -63,7 +57,13 @@ class TodoDashboard extends Component {
 		this.props.addTodo({ todo: this.state.todoToAdd });
 		this.props.getTodos();
 	};
+
+	handleLogout = () => {
+		this.props.logoutUser();
+	};
+
 	render() {
+		const { loading } = this.props.todo;
 		const content = (
 			<div>
 				<div>
@@ -85,17 +85,17 @@ class TodoDashboard extends Component {
 			</div>
 		);
 
-		const toRender = this.state.loading ? <p>Loading...</p> : content;
+		const toRender = loading ? <p>Loading...</p> : content;
 		return toRender;
 	}
 }
 
 const mapStateToProps = state => ({
-	todos: state.todos,
+	todo: state.todos,
 	errors: state.errors,
 });
 
 export default connect(
 	mapStateToProps,
-	{ addTodo, getTodos, removeTodo, editTodo },
+	{ addTodo, getTodos, removeTodo, editTodo, logoutUser },
 )(TodoDashboard);

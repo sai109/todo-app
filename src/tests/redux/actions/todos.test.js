@@ -152,6 +152,9 @@ it('should get todos', () => {
 
 	const expectedActions = [
 		{
+			type: 'LOADING',
+		},
+		{
 			type: 'GET_TODOS',
 			todos: result.data.todos,
 		},

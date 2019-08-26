@@ -10,9 +10,9 @@ it('should handle get todos', () => {
 		],
 	};
 
-	const state = todoReducer([], action);
+	const state = todoReducer({ todos: [], loading: false }, action);
 
-	expect(state).toContainEqual(action.todos[0]);
+	expect(state.todos).toContainEqual(action.todos[0]);
 });
 
 it('should handle get todo', () => {
@@ -21,17 +21,20 @@ it('should handle get todo', () => {
 		id: 1,
 	};
 
-	const defaultState = [
-		{
-			id: 1,
-		},
-		{
-			id: 2,
-		},
-	];
+	const defaultState = {
+		todos: [
+			{
+				id: 1,
+			},
+			{
+				id: 2,
+			},
+		],
+		loading: false,
+	};
 	const state = todoReducer(defaultState, action);
 
-	expect(state).toEqual([{ id: 1 }]);
+	expect(state.todo).toEqual({ id: 1 });
 });
 
 it('should handle add todo', () => {
@@ -42,9 +45,9 @@ it('should handle add todo', () => {
 		},
 	};
 
-	const state = todoReducer([], action);
+	const state = todoReducer({ todos: [], loading: false }, action);
 
-	expect(state).toContainEqual({ id: 1 });
+	expect(state.todos).toContainEqual({ id: 1 });
 });
 
 it('sholud handle delete todo', () => {
@@ -53,9 +56,9 @@ it('sholud handle delete todo', () => {
 		id: 1,
 	};
 
-	const state = todoReducer([{ id: 1 }], action);
+	const state = todoReducer({ todos: [{ id: 1 }], loading: false }, action);
 
-	expect(state).not.toContainEqual({ id: 1 });
+	expect(state.todos).not.toContainEqual({ id: 1 });
 });
 
 it('should handle edit todo', () => {
@@ -67,7 +70,7 @@ it('should handle edit todo', () => {
 		},
 	};
 
-	const state = todoReducer([{ id: 1 }], action);
+	const state = todoReducer({ todos: [{ id: 1 }], loading: false }, action);
 
-	expect(state).toEqual([{ id: 2 }]);
+	expect(state.todos).toEqual([{ id: 2 }]);
 });

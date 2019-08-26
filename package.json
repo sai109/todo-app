@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"lint": "eslint **/*.js",
+		"lint": "eslint --ext .js ./",
 		"start": "node server/server.js",
 		"dev-mode": "concurrently \"yarn dev-server\" \"yarn webpack-dev\"",
 		"dev-server": "cross-env NODE_ENV=development nodemon server/server.js",
