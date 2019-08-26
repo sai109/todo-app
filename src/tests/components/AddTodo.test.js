@@ -17,7 +17,13 @@ it('should handle submit correctly', () => {
 		<AddTodo errors={{ noTodo: true }} onSubmit={onSubmit} />
 	);
 
-	wrapper.find('input').value = 'New Todo';
+	wrapper.find('input').simulate('change', {
+		target: {
+			value: 'Todo Body',
+		},
+	});
+
+	wrapper.update();
 	wrapper.find('form').simulate('submit');
-	expect(onSubmit).toHaveBeenCalled();
+	expect(onSubmit).toHaveBeenCalledTimes(1);
 });

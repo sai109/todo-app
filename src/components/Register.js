@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../redux/actions/auth';
 
-class Register extends Component {
+export class Register extends Component {
 	state = {
 		email: '',
 		password: '',
 	};
+
 	onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
@@ -34,17 +35,19 @@ class Register extends Component {
 						onChange={this.onChange}
 						autoComplete="email"
 					/>
-					{this.props.errors.email ? <p>{this.props.errors.email}</p> : null}
+					{this.props.errors && this.props.errors.email ? (
+						<p>{this.props.errors.email}</p>
+					) : null}
 					<label htmlFor="password">password</label>
 					<input
 						type="password"
 						name="password"
-						id="email"
+						id="password"
 						value={this.state.password}
 						onChange={this.onChange}
 						autoComplete="password"
 					/>
-					{this.props.errors.password ? (
+					{this.props.errors && this.props.errors.password ? (
 						<p>{this.props.errors.password}</p>
 					) : null}
 					<button type="submit">Submit</button>
@@ -60,5 +63,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ registerUser },
+	{ registerUser }
 )(Register);
