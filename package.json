@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
+		"format": "prettier --check *.js",
 		"lint": "eslint --ext .js ./",
 		"start": "node server/server.js",
 		"dev-mode": "concurrently \"yarn dev-server\" \"yarn webpack-dev\"",
@@ -77,6 +78,7 @@
 		"jest": "^24.3.1",
 		"node-fetch": "^2.6.0",
 		"nodemon": "^1.18.9",
+		"prettier": "^1.18.2",
 		"redux-mock-store": "^1.5.3",
 		"webpack-cli": "^3.2.1"
 	}
