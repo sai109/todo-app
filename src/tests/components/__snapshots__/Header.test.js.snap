@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render header correctly 1`] = `
+<div
+  className="header"
+>
+  <h2>
+    TodoApp - Manage your Todos in peace
+  </h2>
+</div>
+`;

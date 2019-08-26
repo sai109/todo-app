@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/auth';
 import { history } from '../utils/history';
 
-class Login extends Component {
+export class Login extends Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
 	};
 
 	onSubmit = e => {
 		e.preventDefault();
 		const user = {
 			email: this.state.email,
-			password: this.state.password
+			password: this.state.password,
 		};
 		this.props.loginUser(user, history);
 	};
@@ -36,7 +36,9 @@ class Login extends Component {
 						onChange={this.onChange}
 						autoComplete="email"
 					/>
-					{this.props.errors.email ? <p>{this.props.errors.email}</p> : null}
+					{this.props.errors && this.props.errors.email ? (
+						<p>{this.props.errors.email}</p>
+					) : null}
 					<label htmlFor="password">Password</label>
 					<input
 						type="password"
@@ -46,7 +48,7 @@ class Login extends Component {
 						onChange={this.onChange}
 						autoComplete="password"
 					/>
-					{this.props.errors.password ? (
+					{this.props.errors && this.props.errors.password ? (
 						<p>{this.props.errors.password}</p>
 					) : null}
 					<button type="submit">Submit</button>
@@ -57,7 +59,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-	errors: state.errors
+	errors: state.errors,
 });
 
 export default connect(

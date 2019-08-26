@@ -10,6 +10,7 @@ import {
 } from '../redux/actions/todos';
 import { logoutUser } from '../redux/actions/auth';
 import { connect } from 'react-redux';
+import Header from './Header';
 
 class TodoDashboard extends Component {
 	state = {
@@ -69,27 +70,30 @@ class TodoDashboard extends Component {
 			content = <p>Loading ...</p>;
 		} else {
 			content = (
-				<div>
-					<div>
-						<h1>Your Todos</h1>
-						<button>Logout</button>
-					</div>
-					<AddTodo
-						onSubmit={this.addTodo}
-						ref={this.new_todo}
-						onChange={this.onChange}
-						todoToAdd={this.state.todoToAdd}
-						errors={this.props.errors}
-					/>
-					<Todos
-						todos={this.state.filteredTodos}
-						removeTodo={this.removeTodo}
-						onToggle={this.onToggle}
-					/>
-				</div>
+				<Todos
+					todos={this.state.filteredTodos}
+					removeTodo={this.removeTodo}
+					onToggle={this.onToggle}
+				/>
 			);
 		}
-		return content;
+		return (
+			<div>
+				<Header />
+				<div>
+					<h1>Your Todos</h1>
+					<button onClick={this.handleLogout}>Logout</button>
+				</div>
+				<AddTodo
+					onSubmit={this.addTodo}
+					ref={this.new_todo}
+					onChange={this.onChange}
+					todoToAdd={this.state.todoToAdd}
+					errors={this.props.errors}
+				/>
+				{content}
+			</div>
+		);
 	}
 }
 

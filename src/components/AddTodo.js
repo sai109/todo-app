@@ -10,7 +10,9 @@ export default class AddTodo extends Component {
 					value={this.props.todoToAdd}
 					onChange={this.props.onChange}
 				/>
-				{this.props.errors.noTodo ? <p>Please provide a todo</p> : null}
+				{this.props.errors && this.props.errors.noTodo ? (
+					<p>Please provide a todo</p>
+				) : null}
 				<button type="submit">Add Todo</button>
 			</form>
 		);

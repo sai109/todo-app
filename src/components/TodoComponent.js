@@ -28,7 +28,6 @@ export default class TodoComponent extends React.Component {
 						onToggle(todo, this.state.completed);
 					}}
 				/>
-				<p>Completed State: {`${this.state.completed}`}</p>
 				<h3>{todo.body}</h3>
 				<button onClick={() => removeTodo(todo._id)}>Delete Todo</button>
 			</div>

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`it should render add todo correctly 1`] = `
-<form>
+<form
+  onSubmit={[MockFunction]}
+>
   <input
     name="todoToAdd"
     type="text"
