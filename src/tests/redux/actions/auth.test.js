@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 
 import * as userActions from '../../../redux/actions/auth';
 import mockAxios from 'axios';
-import history from 'history';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
 it('should login a user', done => {
+	const history = {
+		push: jest.fn(),
+	};
 	mockAxios.post.mockImplementationOnce(() =>
 		Promise.resolve({
 			data: {
@@ -16,7 +18,7 @@ it('should login a user', done => {
 				id: 'Test',
 				token: 'RANDOM_JWT_TOKEN',
 			},
-		}),
+		})
 	);
 
 	const expectedActions = [
@@ -53,7 +55,7 @@ it('should not login a user', done => {
 			payload: {
 				email: 'That email is already taken',
 			},
-		}),
+		})
 	);
 
 	const expectedActions = [
@@ -83,7 +85,7 @@ it('should register a user', done => {
 		Promise.resolve({
 			id: 'Test',
 			token: 'RANDOM_JWT_TOKEN',
-		}),
+		})
 	);
 
 	const userData = {
@@ -111,7 +113,7 @@ it('should not register a user', done => {
 			payload: {
 				email: 'That email is already taken',
 			},
-		}),
+		})
 	);
 
 	const expectedActions = [

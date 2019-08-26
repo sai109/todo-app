@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render WelcomePage correctly 1`] = `
+<div>
+  <_default />
+  <h1>
+    Time To Take Back Control
+  </h1>
+  <Link
+    replace={false}
+    to="/login"
+  >
+    Login
+  </Link>
+  <Link
+    replace={false}
+    to="/register"
+  >
+    Register
+  </Link>
+  <_default />
+</div>
+`;
