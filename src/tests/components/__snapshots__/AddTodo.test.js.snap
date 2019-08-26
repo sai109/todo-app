@@ -8,9 +8,6 @@ exports[`it should render add todo correctly 1`] = `
     name="todoToAdd"
     type="text"
   />
-  <p>
-    Please provide a todo
-  </p>
   <button
     type="submit"
   >
