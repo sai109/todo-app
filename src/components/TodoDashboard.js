@@ -24,10 +24,9 @@ class TodoDashboard extends Component {
 		this.props.getTodos();
 	}
 
-	onToggle = todo => {
-		todo.completed = !todo.completed;
+	onToggle = (todo, todoState) => {
 		this.editTodo(todo._id, {
-			completed: todo.completed,
+			completed: todoState,
 		});
 	};
 

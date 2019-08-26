@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render TodoComponent correctly 1`] = `
+<div>
+  <input
+    checked={false}
+    id="completed"
+    name="completed"
+    onChange={[Function]}
+    type="checkbox"
+    value={false}
+  />
+  <h3>
+    Test
+  </h3>
+  <button
+    onClick={[Function]}
+  >
+    Delete Todo
+  </button>
+</div>
+`;
