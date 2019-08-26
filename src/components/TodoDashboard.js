@@ -64,29 +64,32 @@ class TodoDashboard extends Component {
 
 	render() {
 		const { loading } = this.props.todo;
-		const content = (
-			<div>
+		let content;
+		if (loading) {
+			content = <p>Loading ...</p>;
+		} else {
+			content = (
 				<div>
-					<h1>Your Todos</h1>
-					<button>Logout</button>
+					<div>
+						<h1>Your Todos</h1>
+						<button>Logout</button>
+					</div>
+					<AddTodo
+						onSubmit={this.addTodo}
+						ref={this.new_todo}
+						onChange={this.onChange}
+						todoToAdd={this.state.todoToAdd}
+						errors={this.props.errors}
+					/>
+					<Todos
+						todos={this.state.filteredTodos}
+						removeTodo={this.removeTodo}
+						onToggle={this.onToggle}
+					/>
 				</div>
-				<AddTodo
-					onSubmit={this.addTodo}
-					ref={this.new_todo}
-					onChange={this.onChange}
-					todoToAdd={this.state.todoToAdd}
-					errors={this.props.errors}
-				/>
-				<Todos
-					todos={this.state.filteredTodos}
-					removeTodo={this.removeTodo}
-					onToggle={this.onToggle}
-				/>
-			</div>
-		);
-
-		const toRender = loading ? <p>Loading...</p> : content;
-		return toRender;
+			);
+		}
+		return content;
 	}
 }
 
@@ -97,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ addTodo, getTodos, removeTodo, editTodo, logoutUser },
+	{ addTodo, getTodos, removeTodo, editTodo, logoutUser }
 )(TodoDashboard);
