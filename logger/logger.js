@@ -23,7 +23,7 @@ const logger = createLogger({
 		timestamp(),
 		json(),
 		splat(),
-		myFormat,
+		myFormat
 	),
 	transports: [new transports.File(options.file)],
 });

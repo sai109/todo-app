@@ -12,7 +12,7 @@ import { logoutUser } from '../redux/actions/auth';
 import { connect } from 'react-redux';
 import Header from './Header';
 
-class TodoDashboard extends Component {
+export class TodoDashboard extends Component {
 	state = {
 		todos: [],
 		filterCompleted: false,

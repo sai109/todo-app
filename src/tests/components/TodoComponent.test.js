@@ -18,6 +18,25 @@ it('should render TodoComponent correctly', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
+it('should render a todo correctly', () => {
+	const todo = {
+		_id: 0,
+		body: 'Test',
+		completed: false,
+	};
+	const wrapper = shallow(
+		<TodoComponent
+			key={todo._id}
+			todo={todo}
+			removeTodo={() => undefined}
+			onToggle={() => undefined}
+		/>
+	);
+
+	expect(wrapper.find('h3').text()).toBe(todo.body);
+	expect(wrapper.find('input').checked).toBeFalsy();
+});
+
 it('should update state when checkbox is ticked', () => {
 	const todo = {
 		body: 'Test',
