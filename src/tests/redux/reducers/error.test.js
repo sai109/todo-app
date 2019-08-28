@@ -21,3 +21,13 @@ it('should handle clear error', () => {
 
 	expect(state).toEqual({});
 });
+
+it('should return state if action type not found', () => {
+	const action = {
+		type: 'GEN_ERRORS',
+	};
+
+	const state = errorReducer({}, action);
+
+	expect(state).toEqual({});
+});

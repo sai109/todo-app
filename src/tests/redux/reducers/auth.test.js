@@ -24,3 +24,27 @@ it('should handle logout correctly', () => {
 
 	expect(state).toEqual({});
 });
+
+it('should return state if action type not found', () => {
+	const action = {
+		type: 'GEN_ERRORS',
+	};
+
+	const state = authReducer({}, action);
+
+	expect(state).toEqual({});
+});
+
+it('should set user', () => {
+	const action = {
+		type: 'SET_USER',
+		payload: {
+			token: 'test_token',
+			id: 'test_id',
+		},
+	};
+
+	const state = authReducer({}, action);
+
+	expect(state).toEqual({ id: 'test_id', token: 'test_token' });
+});
