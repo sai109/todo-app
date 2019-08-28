@@ -56,6 +56,7 @@ export class TodoDashboard extends Component {
 		e.preventDefault();
 		this.props.addTodo({ todo: this.state.todoToAdd });
 		this.props.getTodos();
+		this.setState({ todoToAdd: '' });
 	};
 
 	handleLogout = () => {

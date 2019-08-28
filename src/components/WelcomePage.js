@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import styles from '../styles/components/welcomePage.module.scss';
+import Header from './Header';
 
 export default class WelcomePage extends Component {
 	render() {
 		return (
-			<div>
+			<div className={styles.page}>
 				<Header />
-				<h1>Time To Take Back Control</h1>
-				<Link to="/login">Login</Link>
-				<Link to="/register">Register</Link>
-				<Footer />
+				<div className={styles.content}>
+					<div>
+						<h1 className={styles.title}>Time to take back control</h1>
+						<div className={styles.buttonGroup}>
+							<Link className={styles.button} to="/login">
+								Login
+							</Link>
+							<Link className={styles.button} to="/register">
+								Register
+							</Link>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}

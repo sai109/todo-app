@@ -1,6 +1,6 @@
 .error {
 	margin-top: 3px;
-	color: red;
+	color: #c92400;
 	font-size: 1.4rem;
 }
 
@@ -8,7 +8,6 @@
 	font-size: 1.8rem;
 	border: none;
 	border: 1px solid #cacccd;
-	border-radius: 0.1rem;
 	flex-grow: 1;
 	padding: 1.2rem;
 	font-weight: 300;
@@ -16,7 +15,7 @@
 }
 
 .input-error {
-	border-color: red;
+	border-color: #c92400;
 }
 
 .input-group {
@@ -24,6 +23,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	overflow: hidden;
+	margin-bottom: 4.8rem;
 }
 
 .button {

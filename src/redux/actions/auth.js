@@ -12,7 +12,7 @@ export const registerUser = userData => dispatch => {
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			}),
+			})
 		);
 };
 
@@ -31,7 +31,7 @@ export const loginUser = (userData, history) => dispatch => {
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			}),
+			})
 		);
 };
 
@@ -47,3 +47,7 @@ export const setCurrentUser = ({ id }, token) => dispatch => {
 		payload: { id, token },
 	});
 };
+
+export const clearErrors = () => ({
+	type: 'CLEAR_ERRORS',
+});

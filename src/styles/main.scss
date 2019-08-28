@@ -4,6 +4,11 @@ html {
 
 * {
 	font-family: sans-serif;
+	box-sizing: border-box;
+}
+
+button:focus {
+	outline: none;
 }
 
 @import './container';

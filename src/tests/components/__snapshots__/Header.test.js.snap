@@ -2,9 +2,7 @@
 
 exports[`should render header correctly 1`] = `
 <div>
-  <div
-    className="container"
-  >
+  <div>
     <h2
       className="title"
     >

@@ -1,23 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render WelcomePage correctly 1`] = `
-<div>
+<div
+  className="page"
+>
   <_default />
-  <h1>
-    Time To Take Back Control
-  </h1>
-  <Link
-    replace={false}
-    to="/login"
+  <div
+    className="content"
   >
-    Login
-  </Link>
-  <Link
-    replace={false}
-    to="/register"
-  >
-    Register
-  </Link>
-  <_default />
+    <div>
+      <h1
+        className="title"
+      >
+        Time to take back control
+      </h1>
+      <div
+        className="buttonGroup"
+      >
+        <Link
+          className="button"
+          replace={false}
+          to="/login"
+        >
+          Login
+        </Link>
+        <Link
+          className="button"
+          replace={false}
+          to="/register"
+        >
+          Register
+        </Link>
+      </div>
+    </div>
+  </div>
 </div>
 `;

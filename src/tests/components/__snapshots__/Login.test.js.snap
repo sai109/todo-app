@@ -1,44 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render login page correctly 1`] = `
-<div>
-  <h1>
-    Login
-  </h1>
-  <form
-    onSubmit={[Function]}
+<div
+  className="page"
+>
+  <div
+    className="content"
   >
-    <label
-      htmlFor="email"
+    <h1
+      className="title"
     >
-      Email
-    </label>
-    <input
-      autoComplete="email"
-      id="email"
-      name="email"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <label
-      htmlFor="password"
+      Login
+    </h1>
+    <form
+      className="form"
+      onSubmit={[Function]}
     >
-      Password
-    </label>
-    <input
-      autoComplete="password"
-      id="password"
-      name="password"
-      onChange={[Function]}
-      type="password"
-      value=""
-    />
-    <button
-      type="submit"
+      <div
+        className="inputGroup"
+      >
+        <label
+          className="label"
+          htmlFor="email"
+        >
+          Email
+        </label>
+        <input
+          autoComplete="email"
+          className="input"
+          id="email"
+          name="email"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="inputGroup"
+      >
+        <label
+          className="label"
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          autoComplete="password"
+          className="input"
+          id="password"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="button"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+    <Link
+      className="link"
+      replace={false}
+      to="/register"
     >
-      Submit
-    </button>
-  </form>
+      I need an account
+    </Link>
+  </div>
 </div>
 `;
