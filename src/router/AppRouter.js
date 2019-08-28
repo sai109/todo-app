@@ -8,7 +8,6 @@ import { history } from '../utils/history';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import TodoDashboard from '../components/TodoDashboard';
-import WelcomePage from '../components/WelcomePage';
 import Login from '../components/Login';
 import Register from '../components/Register';
 
@@ -16,7 +15,7 @@ const AppRouter = () => (
 	<Provider store={store}>
 		<Router history={history}>
 			<Switch>
-				<PublicRoute path="/" component={WelcomePage} exact={true} />
+				<PublicRoute path="/" component={Login} exact={true} />
 				<PrivateRoute
 					path="/dashboard"
 					component={TodoDashboard}

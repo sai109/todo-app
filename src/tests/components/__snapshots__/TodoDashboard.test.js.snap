@@ -1,10 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render TodoDashboard correctly 1`] = `
-<div>
+<div
+  className="content"
+>
   <_default />
   <div
-    className="container"
+    className="wrapper"
   >
     <div>
       <h1>

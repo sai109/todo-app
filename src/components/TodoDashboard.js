@@ -12,6 +12,9 @@ import { logoutUser } from '../redux/actions/auth';
 import { connect } from 'react-redux';
 import Header from './Header';
 
+import styles from '../styles/components/todoDashboard.module.scss';
+import container from '../styles/components/container.module.scss';
+
 export class TodoDashboard extends Component {
 	state = {
 		todos: [],
@@ -78,9 +81,9 @@ export class TodoDashboard extends Component {
 			);
 		}
 		return (
-			<div>
+			<div className={styles.content}>
 				<Header />
-				<div className="container">
+				<div className={container.wrapper}>
 					<div>
 						<h1>Your Todos</h1>
 						<button onClick={this.handleLogout}>Logout</button>
