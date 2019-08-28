@@ -1,6 +1,8 @@
+@import '../settings';
+
 .page {
 	display: flex;
-	background: #0d21a1;
+	background: $blue;
 	margin: 0;
 	min-height: 100vh;
 	justify-content: center;
@@ -11,7 +13,7 @@
 	margin: 0;
 	padding: 2.4rem;
 	flex-direction: column;
-	background: #eef0f2;
+	background: $white;
 }
 
 .form {
@@ -24,17 +26,17 @@
 .title {
 	font-size: 4.8rem;
 	font-weight: 300;
-	color: #0d21a1;
+	color: $blue;
 	padding-bottom: 1.2rem;
 	margin-bottom: 3.2rem;
-	border-bottom: #0d21a1 solid 3px;
+	border-bottom: $blue solid 3px;
 	margin: 0;
 }
 
 .label {
 	font-size: 1.4rem;
 	font-weight: 300;
-	color: #0d21a1;
+	color: $blue;
 }
 
 .input-group {
@@ -48,19 +50,19 @@
 	padding: 1.2rem;
 	width: 45rem;
 	border: none;
-	border-bottom: 1px solid #0d21a1;
+	border-bottom: 1px solid $blue;
 }
 
 .input-error {
-	border-color: #c92400;
+	border-color: $error;
 }
 
 .button {
 	font-size: 1.8rem;
-	background: #0d21a1;
+	background: $blue;
 	padding: 1.2rem;
 	border-radius: 0.2px;
-	color: #eef0f2;
+	color: $white;
 	font-weight: 300;
 }
 
@@ -68,7 +70,7 @@
 	margin: 0;
 	margin-top: 0.5rem;
 	font-size: 1.2rem;
-	color: #c92400;
+	color: $error;
 }
 
 .link {
@@ -76,5 +78,5 @@
 	margin-top: 0.5rem;
 	font-size: 1.4rem;
 	text-decoration: none;
-	color: #0d21a1;
+	color: $blue;
 }

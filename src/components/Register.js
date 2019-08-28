@@ -77,7 +77,7 @@ export class Register extends Component {
 							) : null}
 						</div>
 						<button className={styles.button} type="submit">
-							Submit
+							Register
 						</button>
 					</form>
 					<Link className={styles.link} to="/login">

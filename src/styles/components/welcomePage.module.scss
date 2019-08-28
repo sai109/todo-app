@@ -1,6 +1,8 @@
+@import '../settings';
+
 .page {
-	background: #eef0f2;
-	color: #141414;
+	background: $white;
+	color: $black;
 	margin: none;
 	min-height: 100vh;
 }
@@ -16,11 +18,11 @@
 }
 
 .button {
-	color: #141414;
+	color: $black;
 	text-decoration: none;
 	font-size: 1.8rem;
 	padding: 1.2rem;
-	border: 1px solid #141414;
+	border: 1px solid $black;
 	margin-right: 4.8rem;
 	border-radius: 10px;
 }
