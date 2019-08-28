@@ -5,10 +5,10 @@ export default class TodoComponent extends React.Component {
 		completed: false,
 	};
 
-	static getDerivedStateFromProps(props) {
-		return {
-			completed: props.todo.completed,
-		};
+	componentDidMount() {
+		this.setState({
+			completed: this.props.todo.completed,
+		});
 	}
 
 	render() {

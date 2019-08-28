@@ -10,6 +10,10 @@ exports[`should render TodoComponent correctly 1`] = `
     type="checkbox"
     value={false}
   />
+  <p>
+    COmpleted State: 
+    false
+  </p>
   <h3>
     Test
   </h3>

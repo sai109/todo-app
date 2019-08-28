@@ -342,12 +342,31 @@ describe('PATCH /todo/:id', () => {
 		expect(res.body.completed).toBeFalsy();
 	});
 
-	it('should edit todo completed', async () => {
+	it('should edit todo completed if originally true', async () => {
 		const payload = { email: users[0].email };
 		const token = jwt.sign(payload, process.env.jwt_key, {
 			expiresIn: 3600,
 		});
 		const id = todos[0]._id.toHexString();
+		const completed = false;
+
+		const res = await request(app)
+			.patch(`/api/todo/${id}`)
+			.set('authorization', `Bearer ${token}`)
+			.send({
+				completed,
+			});
+		expect(res.status).toBe(200);
+		expect(res.body.todo.completed).toBeFalsy();
+		expect(res.body.todo.body).toBe(todos[0].body);
+	});
+
+	it('should edit todo completed if originally false', async () => {
+		const payload = { email: users[0].email };
+		const token = jwt.sign(payload, process.env.jwt_key, {
+			expiresIn: 3600,
+		});
+		const id = todos[2]._id.toHexString();
 		const completed = true;
 
 		const res = await request(app)
@@ -358,7 +377,7 @@ describe('PATCH /todo/:id', () => {
 			});
 		expect(res.status).toBe(200);
 		expect(res.body.todo.completed).toBeTruthy();
-		expect(res.body.todo.body).toBe(todos[0].body);
+		expect(res.body.todo.body).toBe(todos[2].body);
 	});
 
 	it('should not edit todo if no edits passed', async () => {
