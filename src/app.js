@@ -7,6 +7,7 @@ import { logoutUser, setCurrentUser } from './redux/actions/auth';
 import AppRouter from './router/AppRouter';
 import setAuthToken from './utils/setAuthToken';
 import 'normalize.css/normalize.css';
+import './styles/main.scss';
 
 if (localStorage.token) {
 	const decoded = jwt_decode(localStorage.token);

@@ -16,6 +16,9 @@ it('should add a todo', () => {
 
 	const expectedActions = [
 		{
+			type: 'CLEAR_ERRORS',
+		},
+		{
 			type: 'ADD_TODO',
 			todo: {
 				...todoData,

@@ -3,25 +3,29 @@
 exports[`should render TodoDashboard correctly 1`] = `
 <div>
   <_default />
-  <div>
-    <h1>
-      Your Todos
-    </h1>
-    <button
-      onClick={[Function]}
-    >
-      Logout
-    </button>
+  <div
+    className="container"
+  >
+    <div>
+      <h1>
+        Your Todos
+      </h1>
+      <button
+        onClick={[Function]}
+      >
+        Logout
+      </button>
+    </div>
+    <AddTodo
+      onChange={[Function]}
+      onSubmit={[Function]}
+      todoToAdd=""
+    />
+    <_default
+      onToggle={[Function]}
+      removeTodo={[Function]}
+      todos={Array []}
+    />
   </div>
-  <AddTodo
-    onChange={[Function]}
-    onSubmit={[Function]}
-    todoToAdd=""
-  />
-  <_default
-    onToggle={[Function]}
-    removeTodo={[Function]}
-    todos={Array []}
-  />
 </div>
 `;

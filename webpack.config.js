@@ -24,11 +24,38 @@ module.exports = env => {
 					loader: 'babel-loader',
 				},
 				{
-					test: /\.(sc|c)ss/,
-					use: [
+					test: /\.module\.s(a|c)ss$/,
+					loader: [
+						devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+								localIdentName: '[name]__[local]___[hash:base64:5]',
+								camelCase: true,
+								sourceMap: devMode,
+							},
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: devMode,
+							},
+						},
+					],
+				},
+				{
+					test: /\.(c|s(a|c))ss$/,
+					exclude: /\.module.(s(a|c)ss)$/,
+					loader: [
 						devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
 						'css-loader',
-						'sass-loader',
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: devMode,
+							},
+						},
 					],
 				},
 			],

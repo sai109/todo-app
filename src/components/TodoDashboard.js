@@ -79,18 +79,20 @@ export class TodoDashboard extends Component {
 		return (
 			<div>
 				<Header />
-				<div>
-					<h1>Your Todos</h1>
-					<button onClick={this.handleLogout}>Logout</button>
+				<div className="container">
+					<div>
+						<h1>Your Todos</h1>
+						<button onClick={this.handleLogout}>Logout</button>
+					</div>
+					<AddTodo
+						onSubmit={this.addTodo}
+						ref={this.new_todo}
+						onChange={this.onChange}
+						todoToAdd={this.state.todoToAdd}
+						errors={this.props.errors}
+					/>
+					{content}
 				</div>
-				<AddTodo
-					onSubmit={this.addTodo}
-					ref={this.new_todo}
-					onChange={this.onChange}
-					todoToAdd={this.state.todoToAdd}
-					errors={this.props.errors}
-				/>
-				{content}
 			</div>
 		);
 	}

@@ -7,12 +7,13 @@ const loadTodos = () => ({
 export const addTodo = todoData => dispatch => {
 	return axios
 		.post('/api/todo', todoData)
-		.then(
+		.then(() => {
+			dispatch({ type: 'CLEAR_ERRORS' });
 			dispatch({
 				type: 'ADD_TODO',
 				todo: todoData,
-			})
-		)
+			});
+		})
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
