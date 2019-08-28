@@ -58,7 +58,7 @@ exports[`should render login page correctly 1`] = `
         className="button"
         type="submit"
       >
-        Submit
+        Log In
       </button>
     </form>
     <Link

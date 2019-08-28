@@ -58,7 +58,7 @@ exports[`should render register component correctly 1`] = `
         className="button"
         type="submit"
       >
-        Submit
+        Register
       </button>
     </form>
     <Link
