@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend-service
+      dockerfile: Dockerfile
+    networks:
+      - frontend
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./backend-service
+      dockerfile: Dockerfile
+    env_file:
+      - ./compose.env
+    networks:
+      backend:
+      frontend:
+        aliases:
+          - backend
+    ports:
+      - '9000:5000'
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    expose:
+      - '27017'
+    networks:
+      - backend
+    volumes:
+      - data:/data/db
+networks:
+  frontend:
+  backend:
+volumes:
+  data:

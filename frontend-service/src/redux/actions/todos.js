@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = 'http://localhost:9000';
+
 const loadTodos = () => ({
 	type: 'LOADING',
 });
@@ -18,7 +20,7 @@ export const addTodo = todoData => dispatch => {
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			})
+			}),
 		);
 };
 
@@ -29,13 +31,13 @@ export const removeTodo = id => dispatch => {
 			dispatch({
 				type: 'DELETE_TODO',
 				id,
-			})
+			}),
 		)
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			})
+			}),
 		);
 };
 
@@ -46,23 +48,23 @@ export const editTodo = (id, updates) => dispatch => {
 			dispatch({
 				type: 'UPDATE_TODO',
 				updates: updates,
-			})
+			}),
 		)
 		.catch(err =>
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			})
+			}),
 		);
 };
 
 export const getTodos = () => dispatch => {
 	dispatch(loadTodos());
-	return axios.get('/api/todos').then(res =>
+	return axios.get('${process.env.PROXY_URL}/api/todos').then(res =>
 		dispatch({
 			type: 'GET_TODOS',
 			todos: res.data.todos,
-		})
+		}),
 	);
 };
 

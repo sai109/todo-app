@@ -1,6 +1,8 @@
 import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 
+axios.defaults.baseURL = 'http://localhost:9000';
+
 export const registerUser = userData => dispatch => {
 	return axios
 		.post('/api/register', userData)
@@ -12,7 +14,7 @@ export const registerUser = userData => dispatch => {
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			})
+			}),
 		);
 };
 
@@ -31,7 +33,7 @@ export const loginUser = (userData, history) => dispatch => {
 			dispatch({
 				type: 'GET_ERRORS',
 				payload: err.response.data,
-			})
+			}),
 		);
 };
 

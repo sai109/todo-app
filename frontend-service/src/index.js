@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+
 import store from './redux/store';
 import { logoutUser, setCurrentUser } from './redux/actions/auth';
-
 import AppRouter from './router/AppRouter';
 import setAuthToken from './utils/setAuthToken';
 import 'normalize.css/normalize.css';
 import './styles/main.scss';
 import * as serviceWorker from './serviceWorker';
+
+axios.defaults.baseURL = 'http://localhost:9000';
+axios.defaults.url = 'http://localhost:9000';
 
 if (localStorage.token) {
 	const decoded = jwt_decode(localStorage.token);
@@ -23,5 +27,5 @@ if (localStorage.token) {
 	}
 }
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+ReactDOM.render(<AppRouter />, document.getElementById('root'));
 serviceWorker.register();
