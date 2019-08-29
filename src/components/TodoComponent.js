@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from '../styles/components/todoComponent.module.scss';
+
 export default class TodoComponent extends React.Component {
 	state = {
 		completed: false,
@@ -14,7 +16,7 @@ export default class TodoComponent extends React.Component {
 	render() {
 		const { todo, removeTodo, onToggle } = this.props;
 		return (
-			<div>
+			<div className={styles.todo}>
 				<input
 					type="checkbox"
 					name="completed"
@@ -26,12 +28,13 @@ export default class TodoComponent extends React.Component {
 							completed: e.target.checked,
 						});
 
-						onToggle(todo, this.state.completed);
+						onToggle(todo);
 					}}
 				/>
-				<p>COmpleted State: {`${this.state.completed}`}</p>
-				<h3>{todo.body}</h3>
-				<button onClick={() => removeTodo(todo._id)}>Delete Todo</button>
+				<h3 className={styles.body}>{todo.body}</h3>
+				<button className={styles.button} onClick={() => removeTodo(todo._id)}>
+					Delete Todo
+				</button>
 			</div>
 		);
 	}

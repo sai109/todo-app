@@ -71,7 +71,7 @@ it('should trigger onToggle event', () => {
 	wrapper.find('#completed').simulate('change', { target: { checked: true } });
 
 	expect(onToggle).toHaveBeenCalledTimes(1);
-	expect(onToggle).toHaveBeenCalledWith(todo, true);
+	expect(onToggle).toHaveBeenCalledWith(todo);
 });
 
 it('should trigger removeTodo event', () => {
