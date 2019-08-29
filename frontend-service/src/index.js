@@ -8,6 +8,7 @@ import AppRouter from './router/AppRouter';
 import setAuthToken from './utils/setAuthToken';
 import 'normalize.css/normalize.css';
 import './styles/main.scss';
+import * as serviceWorker from './serviceWorker';
 
 if (localStorage.token) {
 	const decoded = jwt_decode(localStorage.token);
@@ -23,3 +24,4 @@ if (localStorage.token) {
 }
 
 ReactDOM.render(<AppRouter />, document.getElementById('app'));
+serviceWorker.register();

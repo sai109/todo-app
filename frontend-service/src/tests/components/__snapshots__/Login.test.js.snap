@@ -63,7 +63,6 @@ exports[`should render login page correctly 1`] = `
     </form>
     <Link
       className="link"
-      replace={false}
       to="/register"
     >
       I need an account
