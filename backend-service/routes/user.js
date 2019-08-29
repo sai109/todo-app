@@ -6,7 +6,7 @@ const _ = require('lodash');
 
 const validateRegister = require('../validation/register');
 const { User } = require('../models/user');
-const logger = require('../../logger/logger');
+const logger = require('../logger/logger');
 
 const router = express.Router();
 
@@ -90,7 +90,7 @@ router.post('/login', (req, res) => {
 										token: `Bearer ${token}`,
 										id: user._id,
 									});
-								},
+								}
 							);
 						} else {
 							return res

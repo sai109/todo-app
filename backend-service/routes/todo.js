@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const { Todo } = require('../models/todo');
 const { ObjectID } = require('mongodb');
-const logger = require('../../logger/logger');
+const logger = require('../logger/logger');
 const _ = require('lodash');
 
 const router = express.Router();

@@ -1,0 +1,4 @@
+{
+	"setupFiles": ["<rootDir>/config/config.js"],
+	"testEnvironment": "node"
+}
