@@ -1,0 +1,28 @@
+@import '../settings';
+
+.todo {
+	background: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.2rem 3.6rem;
+	margin-bottom: 1.2rem;
+}
+
+.body {
+	color: $black;
+	font-size: 2.4rem;
+}
+
+.button {
+	border-color: $error;
+	font-size: 2.4rem;
+	color: $error;
+	border-radius: 2rem;
+	padding: 1.2rem 3.6rem;
+}
+
+.button:hover {
+	cursor: pointer;
+}
