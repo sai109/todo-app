@@ -1,6 +1,6 @@
 # TodoApp
 
-[![Build Status](https://travis-ci.org/sai109/todo-app.svg?branch=master)](https://travis-ci.org/sai109/todo-app)
+[![CircleCI](https://circleci.com/gh/sai109/todo-app/tree/master.svg?style=svg)](https://circleci.com/gh/sai109/todo-app/tree/master)
 
 A to-do management app made with ReactJS. I found making this personal project quite fun. Yes, I am aware the project looks a bit ugly as I am not really a designer but more of a developer.
 
