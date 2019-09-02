@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend-service
+      dockerfile: Dockerfile.test
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'

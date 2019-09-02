@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render register component correctly 1`] = `
+<div
+  className="page"
+>
+  <div
+    className="content"
+  >
+    <h1
+      className="title"
+    >
+      Register
+    </h1>
+    <form
+      className="form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="inputGroup"
+      >
+        <label
+          className="label"
+          htmlFor="email"
+        >
+          Email
+        </label>
+        <input
+          autoComplete="email"
+          className="input"
+          id="email"
+          name="email"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="inputGroup"
+      >
+        <label
+          className="label"
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          autoComplete="password"
+          className="input"
+          id="password"
+          name="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="button"
+        type="submit"
+      >
+        Register
+      </button>
+    </form>
+    <Link
+      className="link"
+      to="/login"
+    >
+      I already have an account
+    </Link>
+  </div>
+</div>
+`;
