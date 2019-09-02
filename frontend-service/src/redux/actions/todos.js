@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:9000';
-
 const loadTodos = () => ({
 	type: 'LOADING',
 });
@@ -60,7 +58,7 @@ export const editTodo = (id, updates) => dispatch => {
 
 export const getTodos = () => dispatch => {
 	dispatch(loadTodos());
-	return axios.get('${process.env.PROXY_URL}/api/todos').then(res =>
+	return axios.get('/api/todos').then(res =>
 		dispatch({
 			type: 'GET_TODOS',
 			todos: res.data.todos,

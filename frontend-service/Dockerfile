@@ -6,5 +6,6 @@ RUN yarn
 COPY ./ /app/
 RUN yarn build
 
-FROM nginx:1.15
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
+FROM nginx:latest 
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build-stage /app/build/ /etc/nginx/html/

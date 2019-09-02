@@ -11,9 +11,6 @@ import 'normalize.css/normalize.css';
 import './styles/main.scss';
 import * as serviceWorker from './serviceWorker';
 
-axios.defaults.baseURL = 'http://localhost:9000';
-axios.defaults.url = 'http://localhost:9000';
-
 if (localStorage.token) {
 	const decoded = jwt_decode(localStorage.token);
 	const currentTime = Date.now() / 1000;

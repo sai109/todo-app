@@ -1,8 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 
-axios.defaults.baseURL = 'http://localhost:9000';
-
 export const registerUser = userData => dispatch => {
 	return axios
 		.post('/api/register', userData)
