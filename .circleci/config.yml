@@ -39,6 +39,9 @@ jobs:
 
       # run tests!
       - run: cd ./frontend-service && yarn test
+
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Install Docker client
           command: |
