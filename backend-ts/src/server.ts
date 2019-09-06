@@ -1,6 +1,5 @@
-const app = require('./app');
+import app from './app';
 const logger = require('./logger/logger');
-const os = require('os');
 
 const port = process.env.PORT || 3000;
 console.log('PORT: ', port);
