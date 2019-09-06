@@ -3,7 +3,7 @@ version: '3'
 services:
   backend:
     build:
-      context: ./backend-service
+      context: .
       dockerfile: Dockerfile.test
     ports:
       - '3000:3000'

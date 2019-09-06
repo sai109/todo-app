@@ -11,7 +11,7 @@ const todo_routes = require('./routes/todo');
 
 const publicPath = path.join(__dirname, '../public');
 
-require('./config/config.js.js');
+require('../config/config.js');
 require('./db/mongoose');
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(publicPath));
 app.use(passport.initialize());
-require('./config/passport')(passport);
+require('../config/passport')(passport);
 app.get('/', (req, res) => {
 	res.send('Hello');
 });
