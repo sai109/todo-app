@@ -2,17 +2,17 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"strict": true,
-		"baseUrl": "./",
+		"baseUrl": ".",
 		"outDir": "dist",
 		"removeComments": true,
 		"experimentalDecorators": true,
 		"target": "es6",
 		"emitDecoratorMetadata": true,
-		"moduleResolution": "node",
-		"importHelpers": true,
-		"types": ["node"],
-		"typeRoots": ["node_modules/@types"]
+		"typeRoots": ["node_modules/@types"],
+		"checkJs": true,
+		"allowJs": true,
+		"types": ["node", "jest"],
+		"moduleResolution": "node"
 	},
-	"include": ["./src/**/*.ts"],
-	"exclude": ["dist"]
+	"include": ["./src/**/*.ts"]
 }
