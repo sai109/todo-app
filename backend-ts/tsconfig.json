@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"strict": true,
 		"baseUrl": ".",
 		"outDir": "dist",
 		"removeComments": true,
@@ -9,10 +8,9 @@
 		"target": "es6",
 		"emitDecoratorMetadata": true,
 		"typeRoots": ["node_modules/@types"],
-		"checkJs": true,
 		"allowJs": true,
 		"types": ["node", "jest"],
 		"moduleResolution": "node"
 	},
-	"include": ["./src/**/*.ts"]
+	"include": ["./src"]
 }

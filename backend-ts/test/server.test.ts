@@ -3,8 +3,8 @@ import { ObjectID } from 'mongodb';
 const request = require('supertest');
 
 import app from '../src/app';
-const { User } = require('../src/models/user');
-const { Todo } = require('../src/models/todo');
+import { User } from '../src/models/user';
+import { Todo } from '../src/models/todo';
 const {
 	users,
 	todos,

@@ -2,14 +2,12 @@ import * as express from 'express';
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const path = require('path');
 const morgan = require('morgan');
 const logger = require('./logger/logger');
 
 const user_routes = require('./routes/user');
 const todo_routes = require('./routes/todo');
-
-const publicPath = path.join(__dirname, '../public');
+import { getStrategy } from './config/passport';
 
 require('../config/config.js');
 require('./db/mongoose');
@@ -24,9 +22,8 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(publicPath));
 app.use(passport.initialize());
-require('../config/passport')(passport);
+passport.use('jwt', getStrategy());
 app.get('/', (req, res) => {
 	res.send('Hello');
 });
