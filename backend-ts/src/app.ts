@@ -1,21 +1,21 @@
 import * as express from 'express';
-const helmet = require('helmet');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const morgan = require('morgan');
-const logger = require('./logger/logger');
+import * as helmet from 'helmet';
+import * as bodyParser from 'body-parser';
+import * as passport from 'passport';
+import * as morgan from 'morgan';
+import { stream } from './logger/logger';
 
 import user_routes from './routes/user';
 import todo_routes from './routes/todo';
 import { getStrategy } from './config/passport';
 
-require('../config/config.js');
-require('./db/mongoose');
+import '../config/config.js';
+import './db/mongoose';
 
 const app: express.Application = express();
 
 if (process.env.NODE_ENV !== 'test') {
-	app.use(morgan('tiny', { stream: logger.stream }));
+	app.use(morgan('tiny', { stream }));
 }
 
 app.use(helmet());

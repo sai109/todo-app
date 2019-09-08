@@ -1,5 +1,5 @@
-const path = require('path');
-const { createLogger, format, transports } = require('winston');
+import * as path from 'path';
+import { createLogger, format, transports } from 'winston';
 
 const { combine, timestamp, label, printf, splat, json } = format;
 
@@ -23,16 +23,16 @@ const logger = createLogger({
 		timestamp(),
 		json(),
 		splat(),
-		myFormat
+		myFormat,
 	),
 	transports: [new transports.File(options.file)],
 });
 
 // create a stream object with a 'write' function that will be used by `morgan`
-logger.stream = {
-	write: function(message) {
+export const stream = {
+	write: message => {
 		logger.info(message);
 	},
 };
 
-module.exports = logger;
+export default logger;

@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as passport from 'passport';
-const { Todo } = require('../models/todo');
+import { Todo } from '../models/todo';
 import { ObjectID } from 'mongodb';
-const logger = require('../logger/logger');
-const _ = require('lodash');
+import logger from '../logger/logger';
+import * as _ from 'lodash';
 
 interface ITodoRequest extends express.Request {
 	user: {

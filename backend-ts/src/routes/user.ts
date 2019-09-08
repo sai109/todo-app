@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 
 const validateRegister = require('../validation/register');
 import { User } from '../models/user';
-const logger = require('../logger/logger');
+import logger from '../logger/logger';
 
 const router: express.Router = express.Router();
 

@@ -1,7 +1,12 @@
-const validator = require('validator');
+import * as validator from 'validator';
+
+interface Ierrors {
+	email?: string;
+	password?: string;
+}
 
 module.exports = body => {
-	let errors = {};
+	let errors: Ierrors = {};
 	if (!validator.isEmail(body.email)) {
 		errors.email = 'Email invalid';
 	}
