@@ -1,19 +1,26 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const validator = require('validator');
-const _ = require('lodash');
+import * as express from 'express';
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
+import * as validator from 'validator';
+import * as _ from 'lodash';
 
 const validateRegister = require('../validation/register');
-const { User } = require('../models/user');
-const logger = require('../logger/logger');
+import { User } from '../models/user';
+import logger from '../logger/logger';
 
-const router = express.Router();
+const router: express.Router = express.Router();
 
-router.get('/', (req, res) => res.status(200));
+router.get('/', (req: express.Request, res: express.Response) =>
+	res.status(200),
+);
+
+interface Ierrors {
+	email?: string;
+	password?: string;
+}
 
 // POST /register - registers user up to service
-router.post('/register', (req, res) => {
+router.post('/register', (req: express.Request, res: express.Response) => {
 	req.body.email = req.body.email ? req.body.email : '';
 	req.body.password = req.body.password ? req.body.password : '';
 
@@ -49,10 +56,10 @@ router.post('/register', (req, res) => {
 });
 
 // GET /login - logs user into service
-router.post('/login', (req, res) => {
+router.post('/login', (req: express.Request, res: express.Response) => {
 	req.body.email = req.body.email ? req.body.email : '';
 	req.body.password = req.body.password ? req.body.password : '';
-	let errors = {};
+	let errors: Ierrors = {};
 
 	if (!validator.isEmail(req.body.email)) {
 		errors.email = 'Email invalid';
@@ -90,7 +97,7 @@ router.post('/login', (req, res) => {
 										token: `Bearer ${token}`,
 										id: user._id,
 									});
-								}
+								},
 							);
 						} else {
 							return res
@@ -106,4 +113,4 @@ router.post('/login', (req, res) => {
 		.catch(err => logger.log(err));
 });
 
-module.exports = router;
+export default router;

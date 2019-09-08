@@ -1,13 +1,10 @@
-/**
- * @jest-environment node
- */
 const jwt = require('jsonwebtoken');
-const { ObjectID } = require('mongodb');
+import { ObjectID } from 'mongodb';
 const request = require('supertest');
 
-const app = require('../app');
-const { User } = require('../models/user');
-const { Todo } = require('../models/todo');
+import app from '../src/app';
+import { User } from '../src/models/user';
+import { Todo } from '../src/models/todo';
 const {
 	users,
 	todos,
@@ -80,7 +77,7 @@ describe('POST /register', () => {
 		expect(res.statusCode).toBe(400);
 	});
 
-	it('should send 400 if password doesn\'t contain a lowercase character', async () => {
+	it("should send 400 if password doesn't contain a lowercase character", async () => {
 		const email = 'example@gmail.com';
 		const password = '123456789&A';
 		const res = await request(app)
@@ -89,7 +86,7 @@ describe('POST /register', () => {
 		expect(res.statusCode).toBe(400);
 	});
 
-	it('should send 400 if password doesn\'t contain an uppercase character', async () => {
+	it("should send 400 if password doesn't contain an uppercase character", async () => {
 		const email = 'example@gmail.com';
 		const password = '123456789&a';
 		const res = await request(app)
@@ -98,7 +95,7 @@ describe('POST /register', () => {
 		expect(res.statusCode).toBe(400);
 	});
 
-	it('should send 400 if password doesn\'t contain a number', async () => {
+	it("should send 400 if password doesn't contain a number", async () => {
 		const email = 'example@gmail.com';
 		const password = 'asdfefdfghtdhgtASDA&A';
 		const res = await request(app)
@@ -107,7 +104,7 @@ describe('POST /register', () => {
 		expect(res.statusCode).toBe(400);
 	});
 
-	it('should send 400 if password doesn\'t contain a special character', async () => {
+	it("should send 400 if password doesn't contain a special character", async () => {
 		const email = 'example@gmail.com';
 		const password = '123456789aA';
 		const res = await request(app)
