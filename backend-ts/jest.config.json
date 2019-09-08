@@ -1,8 +1,0 @@
-{
-	"setupFiles": ["<rootDir>/config/config.js"],
-	"transform": {
-		"^.+\\.ts?$": "ts-jest"
-	},
-	"testEnvironment": "node",
-	"moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
-}

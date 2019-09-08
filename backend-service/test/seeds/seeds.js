@@ -1,7 +1,7 @@
 const { ObjectID } = require('mongodb');
 
-const { User } = require('../../models/user');
-const { Todo } = require('../../models/todo');
+const { User } = require('../../src/models/user');
+const { Todo } = require('../../src/models/todo');
 
 const userOneID = new ObjectID();
 const userTwoID = new ObjectID();

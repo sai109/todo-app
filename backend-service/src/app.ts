@@ -9,7 +9,6 @@ import user_routes from './routes/user';
 import todo_routes from './routes/todo';
 import { getStrategy } from './config/passport';
 
-import '../config/config.js';
 import './db/mongoose';
 
 const app: express.Application = express();
