@@ -1,18 +1,12 @@
-FROM node:10.16.3-alpine as build
-RUN mkdir -p /app
+FROM node:10.16.3-alpine AS builder
 WORKDIR /app
-COPY package.json package.json
-COPY yarn.lock yarn.lock
-RUN yarn
-COPY  . .
-CMD yarn build
-
+COPY . .
+RUN yarn install
+RUN yarn build
+# Our Second stage, that creates an image for production
 FROM node:10.16.3-alpine
-ENV NODE_ENV=production
-RUN mkdir -p /app
 WORKDIR /app
-COPY package.json package.json
-COPY yarn.lock yarn.lock
-RUN yarn
-COPY --from=build /app/dist .
-RUN yarn start
+COPY --from=builder ./app/dist ./
+COPY package.json yarn.lock ./
+RUN yarn install --production
+CMD yarn start

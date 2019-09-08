@@ -21,6 +21,7 @@
 		"winston": "^3.2.1"
 	},
 	"scripts": {
+		"start": "node server.js",
 		"build": "tsc",
 		"test": "jest --config jest.config.json --forceExit"
 	},
