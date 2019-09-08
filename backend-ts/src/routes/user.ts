@@ -113,4 +113,4 @@ router.post('/login', (req: express.Request, res: express.Response) => {
 		.catch(err => logger.log(err));
 });
 
-module.exports = router;
+export default router;

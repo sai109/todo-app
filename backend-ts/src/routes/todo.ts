@@ -139,4 +139,4 @@ router.delete(
 			.catch(err => res.status(404).send(err));
 	},
 );
-module.exports = router;
+export default router;

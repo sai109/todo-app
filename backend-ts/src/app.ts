@@ -5,8 +5,8 @@ const passport = require('passport');
 const morgan = require('morgan');
 const logger = require('./logger/logger');
 
-const user_routes = require('./routes/user');
-const todo_routes = require('./routes/todo');
+import user_routes from './routes/user';
+import todo_routes from './routes/todo';
 import { getStrategy } from './config/passport';
 
 require('../config/config.js');
