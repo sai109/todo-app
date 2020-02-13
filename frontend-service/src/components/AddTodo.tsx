@@ -10,7 +10,7 @@ interface IProps {
 	errors: IErrors | undefined;
 	todoToAdd: string;
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-	onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const AddTodo: React.FC<IProps> = props => (

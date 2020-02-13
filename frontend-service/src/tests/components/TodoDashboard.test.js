@@ -7,7 +7,7 @@ import TodoComponent from '../../components/TodoComponent';
 
 it('should render TodoDashboard correctly', () => {
 	const wrapper = shallow(
-		<TodoDashboard todo={{ todos: [] }} getTodos={() => undefined} />
+		<TodoDashboard todo={{ todos: [] }} getTodos={() => undefined} />,
 	);
 
 	expect(wrapper).toMatchSnapshot();
@@ -22,7 +22,7 @@ it('should call getTodos when component did mount', () => {
 
 it('should update state when new todo is added is updated', () => {
 	const wrapper = mount(
-		<TodoDashboard todo={{ todos: [] }} getTodos={() => []} />
+		<TodoDashboard todo={{ todos: [] }} getTodos={() => []} />,
 	);
 
 	wrapper
@@ -41,7 +41,11 @@ it('should update state when new todo is added is updated', () => {
 it('should call onSubmit correctly', () => {
 	const addTodo = jest.fn();
 	const wrapper = mount(
-		<TodoDashboard todo={{ todos: [] }} getTodos={() => []} addTodo={addTodo} />
+		<TodoDashboard
+			todo={{ todos: [] }}
+			getTodos={() => []}
+			addTodo={addTodo}
+		/>,
 	);
 
 	wrapper
@@ -70,7 +74,7 @@ it('should handle logout correctly', () => {
 			todo={{ todos: [] }}
 			getTodos={() => []}
 			logoutUser={logoutUser}
-		/>
+		/>,
 	);
 
 	wrapper.find('button').simulate('click');
@@ -82,10 +86,10 @@ it('should handle toggling todo correctly', () => {
 	const editTodo = jest.fn();
 	const wrapper = mount(
 		<TodoDashboard
-			todo={{ todos: [{ id: 1, body: 'Test', completed: false }] }}
+			todo={{ todos: [{ _id: 1, body: 'Test', completed: false }] }}
 			editTodo={editTodo}
 			getTodos={() => undefined}
-		/>
+		/>,
 	);
 
 	wrapper.find('#completed').simulate('change', {
@@ -102,10 +106,10 @@ it('should handle removeTodo correctly', () => {
 	const getTodos = jest.fn();
 	const wrapper = mount(
 		<TodoDashboard
-			todo={{ todos: [{ id: 1, body: 'Test', completed: false }] }}
+			todo={{ todos: [{ _id: 1, body: 'Test', completed: false }] }}
 			removeTodo={removeTodo}
 			getTodos={getTodos}
-		/>
+		/>,
 	);
 
 	wrapper

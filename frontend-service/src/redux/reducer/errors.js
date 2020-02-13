@@ -5,6 +5,6 @@ export default (state = {}, action) => {
 		case 'CLEAR_ERRORS':
 			return {};
 		default:
-			return state;
+			return {};
 	}
 };

@@ -1,19 +1,51 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { loginUser, clearErrors } from '../redux/actions/auth';
-import { history } from '../utils/history';
+import history from '../utils/history';
 import styles from '../styles/components/userForm.module.scss';
+import { AxiosRequestConfig } from 'axios';
+import History from 'history';
 
-export class Login extends Component {
+interface IErrors {
+	email: string | undefined;
+	password: string | undefined;
+}
+
+interface IUser {
+	email: string;
+	password: string;
+}
+
+interface IState {
+	email: string;
+	password: string;
+	[key: string]: string;
+}
+
+interface IReduxProps {
+	errors: IErrors;
+}
+
+interface IDispatchProps {
+	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<any>;
+	clearErrors: () => { type: string };
+}
+
+interface IProps extends IReduxProps {
+	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<any>;
+	clearErrors: () => { type: string };
+}
+
+export class Login extends React.Component<IProps, IState> {
 	state = {
 		email: '',
 		password: '',
 	};
 
-	onSubmit = e => {
+	onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const user = {
 			email: this.state.email,
@@ -22,7 +54,7 @@ export class Login extends Component {
 		this.props.loginUser(user, history);
 	};
 
-	onChange = e => {
+	onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
@@ -89,11 +121,14 @@ export class Login extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
+// TODO: change state to match redux state interface
+const mapStateToProps = (state: any): IReduxProps => ({
 	errors: state.errors,
 });
 
-export default connect(
-	mapStateToProps,
-	{ loginUser, clearErrors }
-)(Login);
+const mapDispatchToProps = (): IDispatchProps => ({
+	loginUser,
+	clearErrors,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
