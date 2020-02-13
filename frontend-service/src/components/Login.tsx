@@ -40,7 +40,7 @@ interface IProps extends IReduxProps {
 }
 
 export class Login extends React.Component<IProps, IState> {
-	state = {
+	readonly state = {
 		email: '',
 		password: '',
 	};
