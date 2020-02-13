@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom';
 import { loginUser, clearErrors } from '../redux/actions/auth';
 import history from '../utils/history';
 import styles from '../styles/components/userForm.module.scss';
-import { AxiosRequestConfig } from 'axios';
-import History from 'history';
 
-interface IErrors {
+export interface IErrors {
 	email: string | undefined;
 	password: string | undefined;
 }
