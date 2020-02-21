@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { loginUser, clearErrors } from '../redux/actions/auth';
 import history from '../utils/history';
 import styles from '../styles/components/userForm.module.scss';
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 export interface IErrors {
 	email: string | undefined;
@@ -28,14 +29,11 @@ interface IReduxProps {
 }
 
 interface IDispatchProps {
-	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<any>;
+	loginUser: (user: IUser, history: any) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
 	clearErrors: () => { type: string };
 }
 
-interface IProps extends IReduxProps {
-	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<any>;
-	clearErrors: () => { type: string };
-}
+type IProps = IReduxProps & IDispatchProps;
 
 export class Login extends React.Component<IProps, IState> {
 	readonly state = {
