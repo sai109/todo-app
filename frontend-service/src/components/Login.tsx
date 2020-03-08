@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,6 @@ import { loginUser, clearErrors } from '../redux/actions/auth';
 import history from '../utils/history';
 import styles from '../styles/components/userForm.module.scss';
 import { AxiosRequestConfig } from 'axios';
-import History from 'history';
 
 interface IErrors {
 	email: string | undefined;
@@ -30,12 +30,12 @@ interface IReduxProps {
 }
 
 interface IDispatchProps {
-	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<any>;
+	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<AxiosRequestConfig>;
 	clearErrors: () => { type: string };
 }
 
 interface IProps extends IReduxProps {
-	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<any>;
+	loginUser: (user: IUser, history: any) => (dispatch: any) => Promise<AxiosRequestConfig>;
 	clearErrors: () => { type: string };
 }
 
@@ -126,9 +126,13 @@ const mapStateToProps = (state: any): IReduxProps => ({
 	errors: state.errors,
 });
 
-const mapDispatchToProps = (): IDispatchProps => ({
-	loginUser,
-	clearErrors,
-});
+const mapDispatchToProps = (dispatch: any): IDispatchProps => {
+	return bindActionCreators({
+		loginUser,
+		clearErrors,
+	},
+		dispatch
+	)
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
