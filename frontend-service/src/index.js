@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
-import axios from 'axios';
 
 import store from './redux/store';
 import { logoutUser, setCurrentUser } from './redux/actions/auth';
