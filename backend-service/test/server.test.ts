@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 import { ObjectID } from 'mongodb';
 const request = require('supertest');
-
 import app from '../src/app';
 import { User } from '../src/models/user';
 import { Todo } from '../src/models/todo';
