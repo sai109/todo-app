@@ -23,7 +23,7 @@ exports[`should render TodoDashboard correctly 1`] = `
       onSubmit={[Function]}
       todoToAdd=""
     />
-    <_default
+    <Todos
       onToggle={[Function]}
       removeTodo={[Function]}
       todos={Array []}
