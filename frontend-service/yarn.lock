@@ -1784,6 +1784,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/bson@*":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@types/bson/-/bson-4.0.2.tgz#7accb85942fc39bbdb7515d4de437c04f698115f"
+  integrity sha512-+uWmsejEHfmSjyyM/LkrP0orfE2m5Mx9Xel4tXNeqi1ldK5XMQcDsFkBmLDtuyKUbxj2jGDo0H240fbCRJZo7Q==
+  dependencies:
+    "@types/node" "*"
+
 "@types/classnames@^2.2.9":
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
@@ -1856,6 +1863,22 @@
   integrity sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=
   dependencies:
     moment "*"
+
+"@types/mongodb@*":
+  version "3.5.22"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.22.tgz#860d97e92933f790b65842db06340672a06cecb1"
+  integrity sha512-5rfIExCN1hfyey8OEgpeRSwQyjLcMegtmO54Ag3KQLbRT41ydob3BYhb6uEIsTm7NbZqYPb2k+21Nw9sjON18w==
+  dependencies:
+    "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.7.24":
+  version "5.7.24"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.7.24.tgz#592249435a2e9fee02c9e9650afeac4807d4ef06"
+  integrity sha512-clU58TF46ehydILMdeikm9Vi4vFCJRCOd6B5gzhu9SET88oHTU+K+bJHmxIfIBm3QhSOXbAsY22tUU7/EUvexw==
+  dependencies:
+    "@types/mongodb" "*"
+    "@types/node" "*"
 
 "@types/node@*", "@types/node@^13.7.1":
   version "13.9.1"
