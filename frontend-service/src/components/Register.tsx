@@ -128,10 +128,10 @@ const mapDispatchToProps = (dispatch: any): IDispatchProps => {
 	return bindActionCreators(
 		{
 			registerUser,
-			clearErrors
+			clearErrors,
 		},
-		dispatch
-	)
+		dispatch,
+	);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

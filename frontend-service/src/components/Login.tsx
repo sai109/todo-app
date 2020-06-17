@@ -30,7 +30,10 @@ interface IReduxProps {
 }
 
 interface IDispatchProps {
-	loginUser: (user: IUser, history: any) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	loginUser: (
+		user: IUser,
+		history: any,
+	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
 	clearErrors: () => { type: string };
 }
 
@@ -124,12 +127,13 @@ const mapStateToProps = (state: any): IReduxProps => ({
 });
 
 const mapDispatchToProps = (dispatch: any): IDispatchProps => {
-	return bindActionCreators({
-		loginUser,
-		clearErrors,
-	},
-		dispatch
-	)
+	return bindActionCreators(
+		{
+			loginUser,
+			clearErrors,
+		},
+		dispatch,
+	);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

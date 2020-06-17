@@ -5,9 +5,13 @@ import { ITodo } from '../../../backend-service/src/models/todo';
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 interface IProps {
-	todo: ITodo
-	removeTodo: (todo: ITodo) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
-	onToggle: (todo: ITodo) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	todo: ITodo;
+	removeTodo: (
+		todo: ITodo,
+	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	onToggle: (
+		todo: ITodo,
+	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
 }
 
 interface IState {
