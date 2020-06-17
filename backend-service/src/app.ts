@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 passport.use('jwt', getStrategy());
 app.get('/', (req, res) => {
-	res.send('Hello');
+	res.send('Hello from the other side. (Backend service)');
 });
 
 app.use('/api', user_routes);

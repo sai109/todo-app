@@ -4,13 +4,9 @@ import { ITodo } from '../../../backend-service/src/models/todo';
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 interface IProps {
-	todos: [ITodo];
-	removeTodo: (
-		todo: ITodo,
-	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
-	onToggle: (
-		todo: ITodo,
-	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	todos: ITodo[];
+	removeTodo: (id: ITodo['_id']) => void;
+	onToggle: (todo: ITodo) => void;
 }
 
 const Todos: React.FC<IProps> = props => (

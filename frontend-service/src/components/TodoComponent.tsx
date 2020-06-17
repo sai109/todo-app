@@ -6,12 +6,8 @@ import { AxiosPromise, AxiosRequestConfig } from 'axios';
 
 interface IProps {
 	todo: ITodo;
-	removeTodo: (
-		todo: ITodo,
-	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
-	onToggle: (
-		todo: ITodo,
-	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	removeTodo: (id: ITodo['_id']) => void;
+	onToggle: (todo: ITodo) => void;
 }
 
 interface IState {
