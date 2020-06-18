@@ -3,7 +3,7 @@ import * as React from 'react';
 import styles from '../styles/components/todoComponent.module.scss';
 
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { ITodo } from './interfaces';
+import { ITodo } from '../interfaces/todo';
 
 interface IProps {
 	todo: ITodo;

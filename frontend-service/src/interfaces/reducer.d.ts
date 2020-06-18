@@ -1,5 +1,5 @@
 interface ITodoReducer {
-	todos: [];
-	todo: {};
+	todos: ITodo[];
+	todo: ITodo | {};
 	loading: boolean;
 }

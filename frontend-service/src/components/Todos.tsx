@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TodoComponent from './TodoComponent';
-import { ITodo } from './interfaces';
+import { ITodo } from '../interfaces/todo';
 
 interface IProps {
 	todos: ITodo[];

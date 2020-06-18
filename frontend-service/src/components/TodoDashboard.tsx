@@ -14,9 +14,9 @@ import Header from './Header';
 
 import styles from '../styles/components/todoDashboard.module.scss';
 import container from '../styles/components/container.module.scss';
-import { ITodo } from './interfaces';
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { bindActionCreators } from 'redux';
+import { ITodo } from '../interfaces/todo';
 
 interface ITodoUpdates {
 	body: string;
