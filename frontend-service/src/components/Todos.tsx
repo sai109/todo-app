@@ -1,7 +1,6 @@
 import * as React from 'react';
 import TodoComponent from './TodoComponent';
-import { ITodo } from '../../../backend-service/src/models/todo';
-import { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { ITodo } from './interfaces';
 
 interface IProps {
 	todos: ITodo[];

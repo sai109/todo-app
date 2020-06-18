@@ -14,7 +14,7 @@ import Header from './Header';
 
 import styles from '../styles/components/todoDashboard.module.scss';
 import container from '../styles/components/container.module.scss';
-import { ITodo } from '../../../backend-service/src/models/todo';
+import { ITodo } from './interfaces';
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { bindActionCreators } from 'redux';
 
@@ -97,7 +97,6 @@ export class TodoDashboard extends React.Component<IProps, IState> {
 		e.preventDefault();
 		this.props.addTodo({ todo: this.state.todoToAdd });
 		this.props.getTodos();
-		this.setState({ todoToAdd: '' });
 	};
 
 	handleLogout = () => {
