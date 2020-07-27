@@ -10,3 +10,8 @@ interface IAuthReducer {
 	token?: String;
 	id?: IUser['_id'];
 }
+
+interface IErrorReducer {
+	email?: string;
+	password?: string;
+}
