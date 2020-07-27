@@ -45,7 +45,7 @@ export const logoutUser = () => (dispatch: any) => {
 	dispatch({ type: 'LOGOUT' });
 };
 
-export const setCurrentUser = ({ id }: IUser, token: string) => (
+export const setCurrentUser = ({ id }: any, token: string) => (
 	dispatch: any,
 ) => {
 	dispatch({
