@@ -97,7 +97,9 @@ export class TodoDashboard extends React.Component<IProps, IState> {
 	addTodo = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		this.props.addTodo({ todo: this.state.todoToAdd });
-		this.props.getTodos();
+		if (this.state.todoToAdd !== '') {
+			this.props.getTodos();
+		}
 	};
 
 	handleLogout = () => {
