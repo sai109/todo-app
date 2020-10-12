@@ -17,6 +17,7 @@ import container from '../styles/components/container.module.scss';
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { bindActionCreators } from 'redux';
 import { ITodo } from '../interfaces/todo';
+import { ITodoReducer } from '../interfaces/reducer';
 
 interface ITodoUpdates {
 	body: string;

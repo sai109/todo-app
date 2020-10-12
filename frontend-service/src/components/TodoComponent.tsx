@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import styles from '../styles/components/todoComponent.module.scss';
 
-import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { ITodo } from '../interfaces/todo';
 
 interface IProps {
@@ -33,7 +32,7 @@ export default class TodoComponent extends React.Component<IProps, IState> {
 	};
 
 	render() {
-		const { todo, removeTodo, onToggle } = this.props;
+		const { todo, removeTodo } = this.props;
 		return (
 			<div className={styles.todo}>
 				<input

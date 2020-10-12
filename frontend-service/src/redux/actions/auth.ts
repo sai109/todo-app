@@ -1,6 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
-import { IUser } from '../../interfaces/user';
 
 interface IUserData {
 	email: string;
