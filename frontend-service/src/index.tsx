@@ -1,17 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from 'jwt-decode';
 
 import store from './redux/store';
 import { logoutUser, setCurrentUser } from './redux/actions/auth';
-import AppRouter from './router/AppRouter.tsx';
+import AppRouter from './router/AppRouter';
 import setAuthToken from './utils/setAuthToken';
 import 'normalize.css/normalize.css';
 import './styles/main.scss';
 import * as serviceWorker from './serviceWorker';
 
 if (localStorage.token) {
-	const decoded = jwt_decode(localStorage.token);
+	const decoded: any = jwt_decode(localStorage.token);
 	const currentTime = Date.now() / 1000;
 
 	if (decoded.exp < currentTime) {
