@@ -55,5 +55,6 @@ it('should handle logging in user correctly', () => {
 	wrapper.update();
 
 	wrapper.find('form').simulate('submit', { preventDefault: () => undefined });
+	expect(loginUser).toBeCalledTimes(1);
 	expect(loginUser.mock.calls[0][0]).toEqual({ email, password });
 });

@@ -6,5 +6,5 @@ import todoReducer from './todo';
 export default combineReducers({
 	errors: errorReducer,
 	user: authReducer,
-	todos: todoReducer
+	todos: todoReducer,
 });

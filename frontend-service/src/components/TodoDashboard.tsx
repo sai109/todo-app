@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import AddTodo from './AddTodo';
 import Todos from './Todos';
@@ -14,8 +14,47 @@ import Header from './Header';
 
 import styles from '../styles/components/todoDashboard.module.scss';
 import container from '../styles/components/container.module.scss';
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { bindActionCreators } from 'redux';
+import { ITodo } from '../interfaces/todo';
+import { ITodoReducer } from '../interfaces/reducer';
 
-export class TodoDashboard extends Component {
+interface ITodoUpdates {
+	body: string;
+}
+
+interface IProps extends IDispatchProps {
+	todo: ITodoReducer;
+	errors: any;
+}
+
+interface IDispatchProps {
+	getTodos: () => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	editTodo: (
+		id: ITodo['_id'],
+		todoData: any,
+	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	logoutUser: () => (dispatch: any) => void;
+	addTodo: (
+		todo: ITodoToAdd,
+	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+	removeTodo: (
+		id: ITodo['_id'],
+	) => (dispatch: any) => AxiosPromise<AxiosRequestConfig>;
+}
+
+interface ITodoToAdd {
+	todo: string;
+}
+
+interface IState {
+	todos: ITodo[];
+	filterCompleted: boolean;
+	filteredTodos: ITodo[];
+	todoToAdd: string;
+}
+
+export class TodoDashboard extends React.Component<IProps, IState> {
 	state = {
 		todos: [],
 		filterCompleted: false,
@@ -27,39 +66,40 @@ export class TodoDashboard extends Component {
 		this.props.getTodos();
 	}
 
-	onToggle = todo => {
+	onToggle = (todo: ITodo) => {
 		this.editTodo(todo._id, {
 			completed: !todo.completed,
 		});
 	};
 
-	editTodo = (id, todoData) => {
+	editTodo = (id: ITodo['_id'], todoData: any) => {
 		this.props.editTodo(id, todoData);
 	};
 
-	static getDerivedStateFromProps(props) {
+	static getDerivedStateFromProps(props: IProps) {
 		return {
 			todos: props.todo.todos,
 			filteredTodos: props.todo.todos,
 		};
 	}
 
-	removeTodo = id => {
+	removeTodo = (id: ITodo['_id']) => {
 		if (this.state.todos.length > 0) {
 			this.props.removeTodo(id);
 			this.props.getTodos();
 		}
 	};
 
-	onChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
+	onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		this.setState({ todoToAdd: e.target.value });
 	};
 
-	addTodo = e => {
+	addTodo = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		this.props.addTodo({ todo: this.state.todoToAdd });
-		this.props.getTodos();
-		this.setState({ todoToAdd: '' });
+		if (this.state.todoToAdd !== '') {
+			this.props.getTodos();
+		}
 	};
 
 	handleLogout = () => {
@@ -90,7 +130,6 @@ export class TodoDashboard extends Component {
 					</div>
 					<AddTodo
 						onSubmit={this.addTodo}
-						ref={this.new_todo}
 						onChange={this.onChange}
 						todoToAdd={this.state.todoToAdd}
 						errors={this.props.errors}
@@ -102,12 +141,22 @@ export class TodoDashboard extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
 	todo: state.todos,
 	errors: state.errors,
 });
 
-export default connect(
-	mapStateToProps,
-	{ addTodo, getTodos, removeTodo, editTodo, logoutUser }
-)(TodoDashboard);
+const mapDispatchToProps = (dispatch: any): IDispatchProps => {
+	return bindActionCreators(
+		{
+			addTodo,
+			getTodos,
+			removeTodo,
+			editTodo,
+			logoutUser,
+		},
+		dispatch,
+	);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoDashboard);

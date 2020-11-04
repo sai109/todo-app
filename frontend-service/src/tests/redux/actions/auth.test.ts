@@ -1,11 +1,17 @@
+import { AnyAction } from 'redux';
 import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import * as userActions from '../../../redux/actions/auth';
-import mockAxios from 'axios';
+import axios from 'axios';
+
+jest.mock('axios');
+const mockAxios = axios as jest.Mocked<typeof axios>;
+
+type DispatchExts = ThunkDispatch<any, void, AnyAction>;
 
 const middleware = [thunk];
-const mockStore = configureMockStore(middleware);
+const mockStore = configureMockStore<any, DispatchExts>(middleware);
 
 it('should login a user', done => {
 	const history = {
@@ -18,7 +24,7 @@ it('should login a user', done => {
 				id: 'Test',
 				token: 'RANDOM_JWT_TOKEN',
 			},
-		})
+		}),
 	);
 
 	const expectedActions = [
@@ -55,7 +61,7 @@ it('should not login a user', done => {
 			payload: {
 				email: 'That email is already taken',
 			},
-		})
+		}),
 	);
 
 	const expectedActions = [
@@ -85,7 +91,7 @@ it('should register a user', done => {
 		Promise.resolve({
 			id: 'Test',
 			token: 'RANDOM_JWT_TOKEN',
-		})
+		}),
 	);
 
 	const userData = {
@@ -113,7 +119,7 @@ it('should not register a user', done => {
 			payload: {
 				email: 'That email is already taken',
 			},
-		})
+		}),
 	);
 
 	const expectedActions = [
@@ -148,6 +154,7 @@ it('should logout a user', done => {
 it('should set current user', done => {
 	const store = mockStore();
 
+	// tslint:disable-next-line
 	store.dispatch(userActions.setCurrentUser({ id: 'TEST_ID' }, 'TEST_TOKEN'));
 	expect(store.getActions()).toEqual([
 		{

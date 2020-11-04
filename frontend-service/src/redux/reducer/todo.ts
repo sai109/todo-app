@@ -1,6 +1,12 @@
-const todoReducerDefaultState = { todos: [], todo: {}, loading: false };
+import { ITodoReducer } from '../../interfaces/reducer';
 
-export default (state = todoReducerDefaultState, action) => {
+const todoReducerDefaultState: ITodoReducer = {
+	todos: [],
+	todo: {},
+	loading: false,
+};
+
+export default (state: ITodoReducer = todoReducerDefaultState, action: any) => {
 	const editedTodos = state.todos.map(todo => {
 		if (todo.id === action.id) {
 			const newTodo = {

@@ -1,7 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import TodoComponent from './TodoComponent';
+import { ITodo } from '../interfaces/todo';
 
-export default props => (
+interface IProps {
+	todos: ITodo[];
+	removeTodo: (id: ITodo['_id']) => void;
+	onToggle: (todo: ITodo) => void;
+}
+
+const Todos: React.FC<IProps> = props => (
 	<div className="todos">
 		{props.todos.length < 1 && <p>Please create a todo to get started</p>}
 		{props.todos.map(todo => (
@@ -14,3 +21,5 @@ export default props => (
 		))}
 	</div>
 );
+
+export default Todos;

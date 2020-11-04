@@ -4,17 +4,14 @@ exports[`it should render add todo correctly 1`] = `
 <form
   onSubmit={[MockFunction]}
 >
-  <div
-    className="inputGroup"
-  >
+  <div>
     <input
-      className="input"
+      className=""
       name="todoToAdd"
       placeholder="Enter your new todo here..."
       type="text"
     />
     <button
-      className="button"
       type="submit"
     >
       Add Todo

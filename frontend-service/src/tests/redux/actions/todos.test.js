@@ -1,3 +1,4 @@
+import * as todoActions from '../../../redux/actions/todos';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import mockAxios from 'axios';
@@ -5,12 +6,9 @@ import mockAxios from 'axios';
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-import * as todoActions from '../../../redux/actions/todos';
-
 it('should add a todo', () => {
 	const todoData = {
-		id: 'THIS_IS_A_TODO_ID',
-		body: 'TEST_TODO',
+		todo: 'TEST_TODO',
 	};
 	mockAxios.post.mockImplementationOnce(() => Promise.resolve(todoData));
 
@@ -35,7 +33,7 @@ it('should add a todo', () => {
 
 it('should handle add todo error', () => {
 	const errorData = {
-		data: 'A body for the todo is required',
+		response: 'A body for the todo is required',
 	};
 
 	mockAxios.post.mockImplementationOnce(() => Promise.reject(errorData));

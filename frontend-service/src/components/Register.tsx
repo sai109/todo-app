@@ -1,23 +1,54 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 
 import { registerUser, clearErrors } from '../redux/actions/auth';
-import styles from '../styles/components/userForm.module.scss';
+import * as styles from '../styles/components/userForm.module.scss';
 
-export class Register extends Component {
-	state = {
+export interface IErrors {
+	email: string | undefined;
+	password: string | undefined;
+}
+
+interface IUser {
+	email: string;
+	password: string;
+}
+
+interface IState {
+	email: string;
+	password: string;
+	[key: string]: string;
+}
+
+interface IMappedProps {
+	errors: IErrors;
+}
+
+interface IDispatchProps {
+	registerUser: (user: IUser) => (dispatch: any) => Promise<any>;
+	clearErrors: () => { type: string };
+}
+
+interface IProps extends IMappedProps {
+	registerUser: (user: IUser) => (dispatch: any) => Promise<any>;
+	clearErrors: () => { type: string };
+}
+
+export class Register extends React.Component<IProps, IState> {
+	readonly state = {
 		email: '',
 		password: '',
 	};
 
-	onChange = e => {
+	onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
-	onSubmit = e => {
+	onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const newUser = {
 			email: this.state.email,
@@ -89,11 +120,18 @@ export class Register extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any): IMappedProps => ({
 	errors: state.errors,
 });
 
-export default connect(
-	mapStateToProps,
-	{ registerUser, clearErrors }
-)(Register);
+const mapDispatchToProps = (dispatch: any): IDispatchProps => {
+	return bindActionCreators(
+		{
+			registerUser,
+			clearErrors,
+		},
+		dispatch,
+	);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

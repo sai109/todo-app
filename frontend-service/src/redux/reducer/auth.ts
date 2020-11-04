@@ -1,4 +1,6 @@
-export default (state = {}, action) => {
+import { IAuthReducer } from '../../interfaces/reducer';
+
+export default (state: IAuthReducer = {}, action: any) => {
 	switch (action.type) {
 		case 'LOGIN':
 			return {

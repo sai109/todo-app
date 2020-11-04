@@ -1,7 +1,7 @@
 import React from 'react';
 import headerStyles from '../styles/components/header.module.scss';
 
-export default () => (
+const Header: React.FC<{}> = () => (
 	<div>
 		<div>
 			<h2 className={headerStyles.title}>
@@ -10,3 +10,5 @@ export default () => (
 		</div>
 	</div>
 );
+
+export default Header;

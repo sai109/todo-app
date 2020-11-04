@@ -15,7 +15,7 @@ it('should render no todos message if array empty', () => {
 });
 
 it('should not render message if todos are found', () => {
-	const wrapper = shallow(<Todos todos={[{ key: 0, id: 0 }]} />);
+	const wrapper = shallow(<Todos todos={[{ _id: 0, body: 'Test todo' }]} />);
 
 	expect(wrapper.find('p')).toHaveLength(0);
 });

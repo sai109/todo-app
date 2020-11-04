@@ -4,7 +4,7 @@ exports[`should render TodoDashboard correctly 1`] = `
 <div
   className="content"
 >
-  <_default />
+  <Header />
   <div
     className="wrapper"
   >
@@ -23,7 +23,7 @@ exports[`should render TodoDashboard correctly 1`] = `
       onSubmit={[Function]}
       todoToAdd=""
     />
-    <_default
+    <Todos
       onToggle={[Function]}
       removeTodo={[Function]}
       todos={Array []}

@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from '../redux/store';
-import { history } from '../utils/history';
+import history from '../utils/history';
 
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
